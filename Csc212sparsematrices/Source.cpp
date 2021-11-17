@@ -13,10 +13,6 @@
 //function declarations
 std::vector<std::vector<int>> ReadFile(std::string fileName);
 void PrintMatrix(std::vector<std::vector<int>> matrix);
-	
-	//testing readFile function with matrix txt files
-	std::vector<std::vector<int>> matrix1 = ReadFile(file1);
-	std::vector<std::vector<int>> matrix2 = ReadFile(file2);
 
 	PrintMatrix(matrix1);
 	std::cout << std:: endl;
