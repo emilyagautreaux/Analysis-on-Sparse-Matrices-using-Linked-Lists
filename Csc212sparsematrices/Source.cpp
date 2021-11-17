@@ -6,14 +6,6 @@
 //function declarations
 std::vector<std::vector<int>> ReadFile(std::string fileName);
 void PrintMatrix(std::vector<std::vector<int>> matrix);
-
-int main(int argc, char *argv[]) {
-	//arguments ./prog matrix1.txt matrix2.txt
-	std::string file1 = argv[1];
-	std::string file2 = argv[2];
-	int i = 1 + 2;
-	int j = 5;
-
 	
 	//testing readFile function with matrix txt files
 	std::vector<std::vector<int>> matrix1 = ReadFile(file1);
