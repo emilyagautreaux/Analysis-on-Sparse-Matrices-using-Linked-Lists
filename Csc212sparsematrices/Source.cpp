@@ -35,7 +35,6 @@ void PrintMatrix(std::vector<std::vector<int>> matrix);
 }
 
 //this function prints out values in 2d matrix vectors
-void PrintMatrix(std::vector<std::vector<int>> matrix){
 void PrintMatrix(std::vector<std::vector<int>> matrix) {
 	for (int i = 0; i < matrix.size(); i++) {
 		for (int j = 0; j < matrix[0].size(); j++) {
