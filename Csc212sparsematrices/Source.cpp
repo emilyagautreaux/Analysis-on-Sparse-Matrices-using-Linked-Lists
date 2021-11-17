@@ -14,9 +14,6 @@
 std::vector<std::vector<int>> ReadFile(std::string fileName);
 void PrintMatrix(std::vector<std::vector<int>> matrix);
 
-	PrintMatrix(matrix1);
-	std::cout << std:: endl;
-	PrintMatrix(matrix2);
 	int main(int argc, char* argv[]) {
 		//arguments ./prog matrix1.txt matrix2.txt
 		std::string file1 = argv[1];
@@ -39,8 +36,6 @@ void PrintMatrix(std::vector<std::vector<int>> matrix);
 
 //this function prints out values in 2d matrix vectors
 void PrintMatrix(std::vector<std::vector<int>> matrix){
-	for(int i=0; i< matrix.size(); i++){
-		for(int j=0; j< matrix[0].size(); j++){
 void PrintMatrix(std::vector<std::vector<int>> matrix) {
 	for (int i = 0; i < matrix.size(); i++) {
 		for (int j = 0; j < matrix[0].size(); j++) {
@@ -52,17 +47,14 @@ void PrintMatrix(std::vector<std::vector<int>> matrix) {
 }
 
 //This function reads text files and returns 2d vector matrices
-std::vector<std::vector<int>> ReadFile(std::string fileName){
 std::vector<std::vector<int>> ReadFile(std::string fileName) {
 	std::ifstream inFile(fileName);
 	std::vector<std::vector<int>> matrix;
 	std::string line;
-	while(getline(inFile, line)){
 	while (getline(inFile, line)) {
 		std::vector<int> row;
 		std::istringstream sstream(line);
 		int num;
-		while(sstream>>num){
 		while (sstream >> num) {
 			row.push_back(num);
 		}
@@ -70,5 +62,4 @@ std::vector<std::vector<int>> ReadFile(std::string fileName) {
 	}
 	inFile.close();
 	return matrix;
-}
 }
