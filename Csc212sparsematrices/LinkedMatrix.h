@@ -1,4 +1,3 @@
-
 #pragma once
 #include <iostream>
 #include "Node.h"
@@ -10,11 +9,10 @@ private:
 
 public:
 	Node* head;
-
 	LinkedMatrix();
-	void insert(int row, int col, int val);
+	void append(int row, int col, int val);
 	~LinkedMatrix();
 	void print(Node* node);
-	Node* gethead();
+	void addMatrix(Node* m1, Node *m2, LinkedMatrix* m3);
 };
 

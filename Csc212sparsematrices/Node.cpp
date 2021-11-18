@@ -1,9 +1,5 @@
-
-
 #include <iostream>
 #include "Node.h"
-
-
 
 // constrcuter for each node
 // row will hold the row in which the value is located in the 2d matrix
@@ -15,7 +11,6 @@ Node::Node(int arow, int acol, int aval) {
 	this->col = acol;
 	this->val = aval;
 	this->next = NULL;
-
 }
 
 //deconstructor
