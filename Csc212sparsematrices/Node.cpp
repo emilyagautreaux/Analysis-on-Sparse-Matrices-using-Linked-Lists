@@ -11,7 +11,6 @@ Node::Node(int arow, int acol, int aval) {
 	this->col = acol;
 	this->val = aval;
 	this->next = NULL;
-
 }
 
 //deconstructor

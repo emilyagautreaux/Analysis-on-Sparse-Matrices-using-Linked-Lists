@@ -13,5 +13,6 @@ public:
 	void append(int row, int col, int val);
 	~LinkedMatrix();
 	void print(Node* node);
+	void addMatrix(Node* m1, Node *m2, LinkedMatrix* m3);
 };
 
