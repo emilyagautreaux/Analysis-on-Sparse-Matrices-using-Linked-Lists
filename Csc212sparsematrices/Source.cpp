@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
 
 	LinkedMatrix* m3 = new LinkedMatrix();
 
-	m3->addMatrix(m1->head, m2->head, m3);
+	m3->addMatrix(m1->head, m2->head);
 
 	m1->print(m1->head);
 	std::cout << std::endl;
