@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
 
 //This function reads given text files and creates a Linked Matrix
 LinkedMatrix* ReadFile(std::string fileName) {
-	int rowCount=0, colCount, value;
+	int rowCount=0, colCount;
 	std::ifstream inFile(fileName);
 	std::string line;
 	//create a new LinkedMatrix
