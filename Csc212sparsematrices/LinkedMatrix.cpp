@@ -77,6 +77,27 @@ void LinkedMatrix::addMatrix(Node* m1,Node* m2) {
 
 }
 
+
+void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols){
+	while(m1 != NULL && m2 != NULL){ //make sure linked lists is not empty
+		int sum =0;
+		if(m1Rows == m2Cols){			
+			if(m1->col == m2->row){
+				sum+= m1->val * m2->val;
+				this->append(m1->row, m2->col, sum);
+				m1->next;
+				m2->next;
+			}
+			else if (m1->col > m2-> row){
+				m2 -> next;
+			}
+			else if (m1->col < m2->row){
+				m1->next;
+			}
+		}
+	}
+}
+
 // someone plz check this 
 // inserts a node to back of linked list 
 void LinkedMatrix::append(int row, int col, int val) {

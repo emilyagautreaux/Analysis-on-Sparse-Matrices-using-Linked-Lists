@@ -15,6 +15,7 @@ int main(int argc, char* argv[]) {
 	//arguments ./prog matrix1.txt matrix2.txt
 	std::string file1 = argv[1];
 	std::string file2 = argv[2];
+	
 	//the row and col count of m1 and m2
 	int m1Rows, m2Rows, m1Cols, m2Cols;
 
@@ -25,14 +26,17 @@ int main(int argc, char* argv[]) {
 	LinkedMatrix* m2=ReadFile(file2, m2Rows, m2Cols);
 	//std::cout << "Matrix2 - Rows: " << m2Rows << " " << m2Cols << std::endl;
 	LinkedMatrix* m3 = new LinkedMatrix();
+	LinkedMatrix* m4 = new LinkedMatrix();
 
-	m3->addMatrix(m1->head, m2->head);
+	//m3->addMatrix(m1->head, m2->head);
+	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols);
 
 	m1->print(m1->head);
 	std::cout << std::endl;
 	m2->print(m2->head);
 	std::cout << std::endl;
-	m3->print(m3->head);
+	//m3->print(m3->head);
+	 m4->print(m4->head);
 
 
 
