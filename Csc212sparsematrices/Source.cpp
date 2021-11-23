@@ -3,12 +3,13 @@
 #include<fstream>
 #include<sstream>
 #include <iostream>
+#include<vector>
 
 
 
 //function declarations
 LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols);
-
+void PrintVec(std::vector<std::vector<int>> vector);
 
 
 int main(int argc, char* argv[]) {
@@ -32,6 +33,17 @@ int main(int argc, char* argv[]) {
 
 
 	m3->addMatrix(m1->head, m2->head);
+	LinkedMatrix* m2=ReadFile(file2, m2Rows, m2Cols);
+	
+	LinkedMatrix* m3 = new LinkedMatrix();
+	LinkedMatrix* m4 = new LinkedMatrix();
+
+
+	
+	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
+	PrintVec(vector);
+	
+	//m3->addMatrix(m1->head, m2->head);
 	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols);
 	m5->subtractMatrix(m1->head, m2->head);
 
@@ -40,7 +52,9 @@ int main(int argc, char* argv[]) {
 	m2->print(m2->head);
 	std::cout << std::endl;
 	m3->print(m3->head);
-	 m4->print(m4->head);
+	m4->print(m4->head);
+	m4->print(m4->head);
+
 
 
 	return 0;
@@ -74,4 +88,17 @@ LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols) {
 	inFile.close();
 	return matrix;
 }
+
+//test function to print out 2dVector
+void PrintVec(std::vector<std::vector<int>> vector){
+	std::cout << "Entered PrintVec!" << std::endl;
+	for(int i=0; i<vector.size(); i++){
+		for(int j=0; j<vector[i].size(); j++){
+			std::cout << vector[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
+	std::cout << "End of PrintVec, returning to main" << std::endl;
+}
+
 
