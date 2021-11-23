@@ -7,7 +7,7 @@
 
 
 //function declarations
-LinkedMatrix* ReadFile(std::string fileName);
+LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols);
 
 
 
@@ -15,12 +15,15 @@ int main(int argc, char* argv[]) {
 	//arguments ./prog matrix1.txt matrix2.txt
 	std::string file1 = argv[1];
 	std::string file2 = argv[2];
+	//the row and col count of m1 and m2
+	int m1Rows, m2Rows, m1Cols, m2Cols;
 
 	//testing readFile function with matrix txt files
-	LinkedMatrix* m1=ReadFile(file1);
-	std::cout << std::endl;
-	LinkedMatrix* m2=ReadFile(file2);
-
+	LinkedMatrix* m1=ReadFile(file1,m1Rows, m1Cols);
+	//std::cout << "Matrix1 - Rows: " << m1Rows << " " << m1Cols << std::endl;
+	
+	LinkedMatrix* m2=ReadFile(file2, m2Rows, m2Cols);
+	//std::cout << "Matrix2 - Rows: " << m2Rows << " " << m2Cols << std::endl;
 	LinkedMatrix* m3 = new LinkedMatrix();
 
 	m3->addMatrix(m1->head, m2->head);
@@ -39,7 +42,7 @@ int main(int argc, char* argv[]) {
 
 
 //This function reads given text files and creates a Linked Matrix
-LinkedMatrix* ReadFile(std::string fileName) {
+LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols) {
 	int rowCount=0, colCount;
 	std::ifstream inFile(fileName);
 	std::string line;
@@ -61,7 +64,8 @@ LinkedMatrix* ReadFile(std::string fileName) {
 		//increment rowcount
 		rowCount++;
 	}
-
+	rows = rowCount;
+	cols = colCount;
 	inFile.close();
 	return matrix;
 }
