@@ -110,6 +110,7 @@ void LinkedMatrix::print(Node* node) {
 }
 
 //Function takes in a linkedMatrix and creates/returns a 2dVector of the resulting matrix
+//Adding too many elements back in, still in the process of DEBUGGING
 std::vector<std::vector<int>> LinkedMatrix::Linked2Vector(int rows, int cols){
 	std::vector<std::vector<int>> matrix;
 	std::vector<int> row;
