@@ -12,8 +12,6 @@ LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols);
 void PrintVec(std::vector<std::vector<int>> vector);
 
 
-
-
 int main(int argc, char* argv[]) {
 	//arguments ./prog matrix1.txt matrix2.txt
 	std::string file1 = argv[1];
