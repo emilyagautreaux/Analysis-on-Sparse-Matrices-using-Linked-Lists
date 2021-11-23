@@ -77,7 +77,7 @@ void LinkedMatrix::addMatrix(Node* m1,Node* m2) {
 
 }
 
-
+//test
 void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols){
 	while(m1 != NULL && m2 != NULL){ //make sure linked lists is not empty
 		int sum =0;
