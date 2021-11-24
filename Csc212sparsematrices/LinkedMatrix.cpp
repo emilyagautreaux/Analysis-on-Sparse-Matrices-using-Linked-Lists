@@ -150,8 +150,11 @@ void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols){
 	}
 }
 
+
+// someone plz check this (Looks Like it's working to me! WJS)
+// inserts a node to back of linked list 
 void LinkedMatrix::append(int row, int col, int val) {
-	
+
 	Node* newNode = new Node(row, col, val);
 	Node* temp = head;
 
@@ -180,18 +183,18 @@ void LinkedMatrix::print(Node* node) {
 }
 
 //Function takes in a linkedMatrix and creates/returns a 2dVector of the resulting matrix
-//Adding too many elements back in, still in the process of DEBUGGING
 std::vector<std::vector<int>> LinkedMatrix::Linked2Vector(int rows, int cols){
 	std::vector<std::vector<int>> matrix;
-	std::vector<int> row;
 	Node* temp = this->head;
+	std::vector<int> row;
 
 	for(int i=0; i < rows; i++){
+		
 		for(int j=0; j < cols; j++){
 			//if a nonzero element exists push that value into row
 			if(temp->row == i && temp->col == j){
 				row.push_back(temp->val);
-				std::cout << temp->val << " ";
+				//std::cout << temp->val << " ";
 				//std::cout << "Lmatrix- row:" << temp->row << " col:" << temp->col << " val:" << temp->val << std::endl;
 				//move temp ptr to the next node
 				if(temp->next != nullptr){
@@ -200,14 +203,15 @@ std::vector<std::vector<int>> LinkedMatrix::Linked2Vector(int rows, int cols){
 			}
 			//else push a zero into that spot
 			else{
-				std::cout << "0 ";
+				//std::cout << "0 ";
 				row.push_back(0);
 				}
 		}
 		matrix.push_back(row);
-		std::cout << std::endl;
+		row.clear();
+		//std::cout << std::endl;
 	}
-	std::cout << "Returning vector to main!" << std::endl;
+	
 return matrix;
 
 }
