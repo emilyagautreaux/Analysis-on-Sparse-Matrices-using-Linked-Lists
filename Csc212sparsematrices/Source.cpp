@@ -11,9 +11,9 @@
 LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols);
 void PrintVec(std::vector<std::vector<int>> vector);
 
-
+//arguments ./prog matrix1.txt matrix2.txt
 int main(int argc, char* argv[]) {
-	//arguments ./prog matrix1.txt matrix2.txt
+	
 	std::string file1 = argv[1];
 	std::string file2 = argv[2];
 	
@@ -32,8 +32,9 @@ int main(int argc, char* argv[]) {
 	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
 	PrintVec(vector);
 	
-	//m3->addMatrix(m1->head, m2->head);
-	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols);
+	
+	m3->addMatrix(m1->head, m2->head);
+	// m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols);
 
 	m1->print(m1->head);
 	std::cout << std::endl;
@@ -81,14 +82,14 @@ LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols) {
 
 //test function to print out 2dVector
 void PrintVec(std::vector<std::vector<int>> vector){
-	//std::cout << "Entered PrintVec!" << std::endl;
+	
 	for(int i=0; i<vector.size(); i++){
 		for(int j=0; j<vector[i].size(); j++){
 			std::cout << vector[i][j] << " ";
 		}
 		std::cout << std::endl;
 	}
-	//std::cout << "End of PrintVec, returning to main" << std::endl;
+	
 }
 
 
