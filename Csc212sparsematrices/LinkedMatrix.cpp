@@ -158,7 +158,7 @@ std::vector<std::vector<int>> LinkedMatrix::Linked2Vector(int rows, int cols){
 		matrix.push_back(row);
 		std::cout << std::endl;
 	}
-	std::cout << "Returning vector to main!" << std::endl;
+	//std::cout << "Returning vector to main!" << std::endl;
 return matrix;
 
 }

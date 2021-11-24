@@ -81,14 +81,14 @@ LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols) {
 
 //test function to print out 2dVector
 void PrintVec(std::vector<std::vector<int>> vector){
-	std::cout << "Entered PrintVec!" << std::endl;
+	//std::cout << "Entered PrintVec!" << std::endl;
 	for(int i=0; i<vector.size(); i++){
 		for(int j=0; j<vector[i].size(); j++){
 			std::cout << vector[i][j] << " ";
 		}
 		std::cout << std::endl;
 	}
-	std::cout << "End of PrintVec, returning to main" << std::endl;
+	//std::cout << "End of PrintVec, returning to main" << std::endl;
 }
 
 
