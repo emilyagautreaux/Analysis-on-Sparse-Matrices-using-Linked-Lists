@@ -29,35 +29,29 @@ int main(int argc, char* argv[]) {
 	LinkedMatrix* m3 = new LinkedMatrix(); //for addition
 	LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
 	LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
-
-
-
-	m3->addMatrix(m1->head, m2->head);
-	LinkedMatrix* m2=ReadFile(file2, m2Rows, m2Cols);
-	
-	LinkedMatrix* m3 = new LinkedMatrix();
-	LinkedMatrix* m4 = new LinkedMatrix();
-
-
 	
 	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
-	PrintVec(vector);
-	
+	PrintVec(vector);	
 
-	//m3->addMatrix(m1->head, m2->head);
-	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols);
+	m3->addMatrix(m1->head, m2->head);
+	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m1Cols); 
 	m5->subtractMatrix(m1->head, m2->head);
 
-
+	std::cout<<"Matrix 1"<<std::endl;
 	m1->print(m1->head);
 	std::cout << std::endl;
+	std::cout<<"Matrix 2"<<std::endl;
 	m2->print(m2->head);
 	std::cout << std::endl;
+	std::cout<<"Addition"<<std::endl;
 	m3->print(m3->head);
+	std::cout << std::endl;
+	std::cout<<"Multiplication"<<std::endl;
 	m4->print(m4->head);
+	std::cout << std::endl;
+	std::cout<<"Subtraction"<<std::endl;
 	m4->print(m4->head);
-
-
+	std::cout << std::endl;
 
 	return 0;
 }
