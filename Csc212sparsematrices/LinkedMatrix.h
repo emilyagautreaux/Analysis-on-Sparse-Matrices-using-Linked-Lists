@@ -16,6 +16,7 @@ public:
 	void print(Node* node);
 	std::vector<std::vector<int>> Linked2Vector(int rows, int cols);
 	void addMatrix(Node* m1, Node *m2);
+	void subtractMatrix(Node* m1, Node* m2);
 	void multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols);
 };
 

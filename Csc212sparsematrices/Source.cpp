@@ -22,6 +22,17 @@ int main(int argc, char* argv[]) {
 
 	//testing readFile function with matrix txt files
 	LinkedMatrix* m1=ReadFile(file1,m1Rows, m1Cols);
+	//std::cout << "Matrix1 - Rows: " << m1Rows << " " << m1Cols << std::endl;	
+	LinkedMatrix* m2=ReadFile(file2, m2Rows, m2Cols);
+	//std::cout << "Matrix2 - Rows: " << m2Rows << " " << m2Cols << std::endl;
+
+	LinkedMatrix* m3 = new LinkedMatrix(); //for addition
+	LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
+	LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
+
+
+
+	m3->addMatrix(m1->head, m2->head);
 	LinkedMatrix* m2=ReadFile(file2, m2Rows, m2Cols);
 	
 	LinkedMatrix* m3 = new LinkedMatrix();
@@ -32,9 +43,11 @@ int main(int argc, char* argv[]) {
 	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
 	PrintVec(vector);
 	
-	
-	m3->addMatrix(m1->head, m2->head);
-	// m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols);
+
+	//m3->addMatrix(m1->head, m2->head);
+	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols);
+	m5->subtractMatrix(m1->head, m2->head);
+
 
 	m1->print(m1->head);
 	std::cout << std::endl;
@@ -42,14 +55,12 @@ int main(int argc, char* argv[]) {
 	std::cout << std::endl;
 	m3->print(m3->head);
 	m4->print(m4->head);
-
+	m4->print(m4->head);
 
 
 
 	return 0;
 }
-
-
 
 //This function reads given text files and creates a Linked Matrix
 LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols) {
