@@ -6,11 +6,38 @@
 #include<vector>
 #include <SFML/Graphics.hpp>
 
-
-
 //function declarations
 LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols);
 void PrintVec(std::vector<std::vector<int>> vector);
+
+//This function reads given text files and creates a Linked Matrix
+LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols) {
+	int rowCount=0, colCount=0;
+	std::ifstream inFile(fileName);
+	std::string line;
+	//create a new LinkedMatrix
+	LinkedMatrix* matrix = new LinkedMatrix();
+	
+	while (getline(inFile, line)) {
+		std::istringstream sstream(line);
+		int num;
+		colCount = 0;
+		while (sstream >> num) {
+			if(num!=0){
+			//if element is not zero add to linkedMatrix
+			matrix->append(rowCount, colCount, num);
+			//std::cout << "Row:" << rowCount << " Col: "<< colCount << " Value:"<< num << std::endl;
+			}
+			colCount++;
+		}
+		//increment rowcount
+		rowCount++;
+	}
+	rows = rowCount;
+	cols = colCount;
+	inFile.close();
+	return matrix;
+}
 
 //arguments ./prog matrix1.txt matrix2.txt
 int main(int argc, char* argv[]) {
@@ -21,43 +48,33 @@ int main(int argc, char* argv[]) {
 	//the row and col count of m1 and m2
 	int m1Rows, m2Rows, m1Cols, m2Cols;
 
-	//testing readFile function with matrix txt files
 	LinkedMatrix* m1 = ReadFile(file1, m1Rows, m1Cols);
-	//std::cout << "Matrix1 - Rows: " << m1Rows << " " << m1Cols << std::endl;	
 	LinkedMatrix* m2 = ReadFile(file2, m2Rows, m2Cols);
-	//std::cout << "Matrix2 - Rows: " << m2Rows << " " << m2Cols << std::endl;
 
 	LinkedMatrix* m3 = new LinkedMatrix(); //for addition
-//	LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
-//	LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
+	LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
+	LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
+
+	m3->addMatrix(m1->head, m2->head); //add 
+	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m1Cols); //multiply
+	m5->subtractMatrix(m1->head, m2->head); //subtract
 	
-//	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
-//	PrintVec(vector);	
-
-	//m3->addMatrix(m1->head, m2->head);
-//	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m1Cols); 
-//	m5->subtractMatrix(m1->head, m2->head);
-
 	/*
-	std::cout<<"Matrix 1"<<std::endl;
-	m1->print(m1->head);
-	std::cout << std::endl;
-	std::cout<<"Matrix 2"<<std::endl;
-	m2->print(m2->head);
-	std::cout << std::endl;
-	std::cout<<"Addition"<<std::endl;
-	m3->print(m3->head);
-	std::cout << std::endl;
-	std::cout<<"Multiplication"<<std::endl;
-	m4->print(m4->head);
-	std::cout << std::endl;
-	std::cout<<"Subtraction"<<std::endl;
-	m4->print(m4->head);
+	//Print linked list output 
+	m1->print(m1->head, "Matrix 1");	
+	m2->print(m2->head, "Matrix 2");	
+	m3->print(m3->head, "Addition");	
+	m4->print(m4->head, "Multiplication");	
+	m5->print(m5->head, "Subtraction");
 
-	std::cout << std::endl;
-	
-
+	//print output in matrix format
+	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 1");
+	PrintVec(vector);
+	std::vector<std::vector<int>> vector2 = m4->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Multiplication");
+	PrintVec(vector2);
 	*/
+
+
 		
 
 		// object for our window of size 1500x900
@@ -117,7 +134,7 @@ int main(int argc, char* argv[]) {
 					
 						
 						// make m1 into vector 
-						std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
+						std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 1");
 
 						// this will take all values of m1 and append them into a string named "s"
 						// it will then assign string s to the text varible using text.setstring
@@ -136,7 +153,7 @@ int main(int argc, char* argv[]) {
 						}
 					
 						// same as above but for m2 and text1 object
-						std::vector<std::vector<int>> vector2 = m2->Linked2Vector(m2Rows, m2Cols);
+						std::vector<std::vector<int>> vector2 = m2->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 2");
 						for (int i = 0; i < vector2.size(); i++) {
 
 							for (int j = 0; j < vector2[i].size(); j++) {
@@ -155,7 +172,7 @@ int main(int argc, char* argv[]) {
 						m3->addMatrix(m1->head, m2->head);
 
 						// make m3 into vector 
-						std::vector<std::vector<int>> vector3 = m3->Linked2Vector(3, 3);
+						std::vector<std::vector<int>> vector3 = m3->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols,"Addition");
 
 						//same as above but for m3 and text2 object
 						for (int i = 0; i < vector3.size(); i++) {
@@ -199,45 +216,13 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-//This function reads given text files and creates a Linked Matrix
-LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols) {
-	int rowCount=0, colCount=0;
-	std::ifstream inFile(fileName);
-	std::string line;
-	//create a new LinkedMatrix
-	LinkedMatrix* matrix = new LinkedMatrix();
-	
-	while (getline(inFile, line)) {
-		std::istringstream sstream(line);
-		int num;
-		colCount = 0;
-		while (sstream >> num) {
-			if(num!=0){
-			//if element is not zero add to linkedMatrix
-			matrix->append(rowCount, colCount, num);
-			//std::cout << "Row:" << rowCount << " Col: "<< colCount << " Value:"<< num << std::endl;
-			}
-			colCount++;
-		}
-		//increment rowcount
-		rowCount++;
-	}
-	rows = rowCount;
-	cols = colCount;
-	inFile.close();
-	return matrix;
-}
-
 //test function to print out 2dVector
-void PrintVec(std::vector<std::vector<int>> vector){
-	
+void PrintVec(std::vector<std::vector<int>> vector){	
+
 	for(int i=0; i<vector.size(); i++){
 		for(int j=0; j<vector[i].size(); j++){
 			std::cout << vector[i][j] << " ";
 		}
 		std::cout << std::endl;
-	}
-	
+	}	
 }
-
-
