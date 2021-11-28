@@ -31,6 +31,16 @@ int main(int argc, char* argv[]) {
 	LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
 	LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
 
+
+	m3->addMatrix(m1->head, m2->head);
+	LinkedMatrix* m2=ReadFile(file2, m2Rows, m2Cols);
+	
+	LinkedMatrix* m3 = new LinkedMatrix();
+	LinkedMatrix* m4 = new LinkedMatrix();
+
+
+	
+
 	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
 	PrintVec(vector);	
 
@@ -53,6 +63,7 @@ int main(int argc, char* argv[]) {
 	std::cout << std::endl;
 	std::cout<<"Subtraction"<<std::endl;
 	m4->print(m4->head);
+
 	std::cout << std::endl;
 
 
