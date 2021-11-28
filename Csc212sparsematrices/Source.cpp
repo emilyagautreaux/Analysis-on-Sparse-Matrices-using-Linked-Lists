@@ -15,9 +15,9 @@ void PrintVec(std::vector<std::vector<int>> vector);
 //arguments ./prog matrix1.txt matrix2.txt
 int main(int argc, char* argv[]) {
 
-	std::string file1 = argv[1];
+    std::string file1 = argv[1];
 	std::string file2 = argv[2];
-
+	
 	//the row and col count of m1 and m2
 	int m1Rows, m2Rows, m1Cols, m2Cols;
 
@@ -28,17 +28,17 @@ int main(int argc, char* argv[]) {
 	//std::cout << "Matrix2 - Rows: " << m2Rows << " " << m2Cols << std::endl;
 
 	LinkedMatrix* m3 = new LinkedMatrix(); //for addition
-	LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
-	LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
+//	LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
+//	LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
+	
+//	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
+//	PrintVec(vector);	
 
-	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
-	PrintVec(vector);	
+	//m3->addMatrix(m1->head, m2->head);
+//	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m1Cols); 
+//	m5->subtractMatrix(m1->head, m2->head);
 
-	m3->addMatrix(m1->head, m2->head);
-	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m1Cols); 
-	m5->subtractMatrix(m1->head, m2->head);
-
-
+	/*
 	std::cout<<"Matrix 1"<<std::endl;
 	m1->print(m1->head);
 	std::cout << std::endl;
@@ -54,12 +54,15 @@ int main(int argc, char* argv[]) {
 	std::cout<<"Subtraction"<<std::endl;
 	m4->print(m4->head);
 	std::cout << std::endl;
-
-
 	
-	
+
+	*/
+		
+
+		// object for our window of size 1500x900
 		sf::RenderWindow window(sf::VideoMode(1500, 900), "Sparse Matrix Operations!");
 	
+		// font object 
 		sf::Font font;
 		
 		//Load and check the availability of the font file
@@ -68,42 +71,55 @@ int main(int argc, char* argv[]) {
 			std::cout << "can't load font" << std::endl;
 		}
 		
+		// creating a text variable named text 
 		sf::String s;
 		sf::Text text(s, font, 75);
 		text.setFillColor(sf::Color::Red);
 
+		// creating a text variable named text2
 		sf::String s1;
-		sf::Text text2(s1, font, 75);
-		text2.setFillColor(sf::Color::Cyan);
+		sf::Text text1(s1, font, 75);
+		text1.setFillColor(sf::Color::Cyan);
 
+		//// creating a text variable named text 3
 		sf::String s2;
-		sf::Text text3(s2, font, 75);
-		text3.setFillColor(sf::Color::Green);
+		sf::Text text2(s2, font, 75);
+		text2.setFillColor(sf::Color::Green);
 
+
+		// making sure window is open 
 		while (window.isOpen())
-		{
+		{	
+			// an event object that will store any type of event that occurs, in our case,
+			// an event will be holding user input from keyboard 
 			sf::Event event;
+			// while there is an event that has occured....
 			while (window.pollEvent(event))
 			{
 				
 				switch (event.type) {
 
+				
+				// we can create different events for different keys pressed which will give us a way for user 
+				// to choose what operation they want
+
+
+					// if they close the window, close the window and break out of loop
 				case sf::Event::Closed:
 					window.close();
 					break;
-				//case sf::Event::TextEntered:
-				//	if (event.text.unicode >= 32 && event.text.unicode <= 126)
-					//	s += (char)event.text.unicode;
-					//else if (event.text.unicode == 8 && s.getSize() > 0)
-					//	s.erase(s.getSize() - 1, s.getSize());
-
-				//	text.setString(s);
-				//	break;
+				
+				// if the event is a keypressed 
 				case sf::Event::KeyPressed:
+					// if that event is a space from keyboard
 					if (event.key.code == sf::Keyboard::Space) {
 					
 						
+						// make m1 into vector 
 						std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
+
+						// this will take all values of m1 and append them into a string named "s"
+						// it will then assign string s to the text varible using text.setstring
 						for (int i = 0; i < vector.size(); i++) {
 
 							for (int j = 0; j < vector[i].size(); j++) {
@@ -118,6 +134,7 @@ int main(int argc, char* argv[]) {
 							text.setString(s);
 						}
 					
+						// same as above but for m2 and text1 object
 						std::vector<std::vector<int>> vector2 = m2->Linked2Vector(m2Rows, m2Cols);
 						for (int i = 0; i < vector2.size(); i++) {
 
@@ -130,13 +147,16 @@ int main(int argc, char* argv[]) {
 								//text2.setString(s1);
 							}
 							s1 += "\n";
-							text2.setString(s1);
+							text1.setString(s1);
 						}
 
-
+						// adding the matricies and storing them into m3
 						m3->addMatrix(m1->head, m2->head);
 
+						// make m3 into vector 
 						std::vector<std::vector<int>> vector3 = m3->Linked2Vector(3, 3);
+
+						//same as above but for m3 and text2 object
 						for (int i = 0; i < vector3.size(); i++) {
 
 							for (int j = 0; j < vector3[i].size(); j++) {
@@ -148,7 +168,7 @@ int main(int argc, char* argv[]) {
 								//text2.setString(s1);
 							}
 							s2 += "\n";
-							text3.setString(s2);
+							text2.setString(s2);
 						}
 
 						break;
@@ -159,19 +179,21 @@ int main(int argc, char* argv[]) {
 				
 			}
 
+			// .clear will clear the window 
+			// .setposition will put our object at a specific cooridnate
+			// draw will put the object on screen 
+			// display will show us the window
+
 			//window.clear();
 			text.setPosition(10, 200);
-			text2.setPosition(350, 200);
-			text3.setPosition(700, 200);
+			text1.setPosition(350, 200);
+			text2.setPosition(700, 200);
 			window.draw(text);
+			window.draw(text1);
 			window.draw(text2);
-			window.draw(text3);
 			window.display();
 		}
 
-	
-
-	
 
 	return 0;
 }
