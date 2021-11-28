@@ -30,7 +30,13 @@ int main(int argc, char* argv[]) {
 	LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
 	LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
 
+<<<<<<< Updated upstream
 
+=======
+<<<<<<< Updated upstream
+	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols);
+	PrintVec(vector);	
+>>>>>>> Stashed changes
 
 	m3->addMatrix(m1->head, m2->head);
 	LinkedMatrix* m2=ReadFile(file2, m2Rows, m2Cols);
@@ -56,6 +62,33 @@ int main(int argc, char* argv[]) {
 	m3->print(m3->head);
 	m4->print(m4->head);
 	m4->print(m4->head);
+<<<<<<< Updated upstream
+=======
+	std::cout << std::endl;
+=======
+
+
+	m3->addMatrix(m1->head, m2->head);
+	m2=ReadFile(file2, m2Rows, m2Cols);
+	
+	
+	
+
+	m3->addMatrix(m1->head, m2->head);
+	// m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols);
+	// m5->subtractMatrix(m1->head, m2->head);
+	std::vector<std::vector<int>> vector = m3->Linked2Vector(m1Rows, m1Cols);
+	PrintVec(vector);
+
+	//m1->print(m1->head);
+	// std::cout << std::endl;
+	// m2->print(m2->head);
+	// std::cout << std::endl;
+	// m3->print(m3->head);
+	// m4->print(m4->head);
+	// m4->print(m4->head);
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 
 
