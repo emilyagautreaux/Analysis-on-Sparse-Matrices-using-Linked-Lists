@@ -53,6 +53,7 @@ int main(int argc, char* argv[]) {
 	std::cout << std::endl;
 	std::cout<<"Subtraction"<<std::endl;
 	m4->print(m4->head);
+
 	std::cout << std::endl;
 	
 
