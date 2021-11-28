@@ -130,41 +130,46 @@ void LinkedMatrix::subtractMatrix(Node* m1, Node* m2){
 }
 
 
-void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols, int m1Cols){
-	int num1;
-    int num2;
-    int sum;
-
-    if(m1Rows == m2Cols){
-        for (unsigned int i = 0; i < m1Rows; i++) {
-            for (unsigned int j = 0; j < m2Cols; j++) {
-                sum = 0;
-                for (unsigned int k = 0; k < m1Cols; k++) {
-
-                    num1 = find(m1, i, k);
-                    num2 = find(m2, k, j);
-                    sum += num1 * num2;
-                }
-                if (sum != 0) {
-                    this->append(i, j, sum);
-                }
-
-            }
-        }
-    }
-}
-
 int LinkedMatrix::find(Node* m, int r, int c) {
 
-    while (m != NULL) {
+	while (m != NULL) {
 
-        if (m->row == r && m->col == c) {
-            return m->val;
-        }
-        m = m->next;
-    }
+		if (m->row == r && m->col == c) {
+			return m->val;
+		}
+		m = m->next;
+	}
 
-    return 0;
+	return 0;
+}
+
+void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int m1Cols){
+
+	int num1;
+	int num2;
+	int sum;
+		
+		if(m1Rows == m2Cols){
+
+	
+			for (unsigned int i = 0; i < m1Rows; i++) {
+
+				for (unsigned int j = 0; j < m2Cols; j++) {
+					sum = 0;
+					for (unsigned int k = 0; k < m1Cols; k++) {
+
+						num1 = find(m1, i, k);
+						num2 = find(m2, k, j);
+						sum += num1 * num2;
+					}
+					if (sum != 0) {
+						this->append(i, j, sum);
+					}
+
+				}
+			}	
+		}
+
 }
 
 
