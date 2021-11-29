@@ -4,7 +4,7 @@
 #include<sstream>
 #include <iostream>
 #include<vector>
-#include <SFML/Graphics.hpp>
+//#include <SFML/Graphics.hpp>
 
 //function declarations
 LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols);
