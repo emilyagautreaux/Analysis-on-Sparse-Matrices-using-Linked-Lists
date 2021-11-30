@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
         for(int j=0; j<cols; j++){
         //create random number from 1-100
         random = rand() % 100 + 1;
-            if(random <= 67){
+            if(random <= 70){
                 outFile << "0 ";
             }
             else{
