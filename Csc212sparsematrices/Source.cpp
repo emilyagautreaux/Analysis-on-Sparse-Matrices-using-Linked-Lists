@@ -8,7 +8,7 @@
 
 //function declarations
 LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols);
-void PrintVec(std::vector<std::vector<int>> vector);
+void PrintVec(std::vector<std::vector<int> > vector);
 
 
 //This function reads given text files and creates a Linked Matrix
@@ -311,7 +311,7 @@ int main(int argc, char* argv[]) {
 						}
 						
 						// same as above but for m2 and text1 object
-						std::vector<std::vector<int>> vector2 = m2->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 2");
+						std::vector<std::vector<int> > vector2 = m2->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 2");
 						for (int i = 0; i < vector2.size(); i++) {
 
 							for (int j = 0; j < vector2[i].size(); j++) {
