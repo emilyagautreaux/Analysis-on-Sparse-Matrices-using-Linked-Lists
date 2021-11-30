@@ -136,7 +136,6 @@ int main(int argc, char* argv[]) {
 		infotext.setPosition(50, 90);
 
 		bool op = false;
-		bool inputscreen = false;
 		bool infoscreen = false;
 		
 		sf::Texture background;
@@ -208,17 +207,6 @@ int main(int argc, char* argv[]) {
 		float invButtonHeight = invButtonImage.getLocalBounds().height;
 		invButtonImage.setTexture(invButton);
 
-
-		sf::Texture userButton;
-		sf::Sprite userButtonImage;
-		if (!userButton.loadFromFile("user.png"))
-			std::cout << "Can't find the image" << std::endl;
-		userButtonImage.setPosition(800, 500);
-
-		float userButtonWidth = userButtonImage.getLocalBounds().width;
-		float userButtonHeight = userButtonImage.getLocalBounds().height;
-		userButtonImage.setTexture(userButton);
-
 		// making sure window is open 
 		while (window.isOpen())
 
@@ -260,10 +248,6 @@ int main(int argc, char* argv[]) {
 					{
 						infoButtonImage.setColor(sf::Color(250, 20, 20));
 					}
-					else if (userButtonImage.getGlobalBounds().contains(mousePosF))
-					{
-						userButtonImage.setColor(sf::Color(250, 20, 20));
-					}
 					else
 					{
 						addButtonImage.setColor(sf::Color(255, 255, 255));
@@ -272,7 +256,6 @@ int main(int argc, char* argv[]) {
 						invButtonImage.setColor(sf::Color(255, 255, 255));
 						backButtonImage.setColor(sf::Color(255, 255, 255));
 						infoButtonImage.setColor(sf::Color(255, 255, 255));
-						userButtonImage.setColor(sf::Color(255, 255, 255));
 					}
 				}
 				break;
@@ -354,11 +337,6 @@ int main(int argc, char* argv[]) {
 						{
 							infoscreen = true;
 						}
-						else if (userButtonImage.getGlobalBounds().contains(mousePosF))
-						{
-							inputscreen = true;
-
-						}
 						// adding the matricies and storing them into m3
 
 
@@ -413,6 +391,10 @@ int main(int argc, char* argv[]) {
 		
 
 			if (op == true) {
+				//window.clear();
+
+				
+
 
 				window.draw(backgroundImage);
 				text.setPosition(10, 200);
@@ -421,17 +403,24 @@ int main(int argc, char* argv[]) {
 				text1.setPosition(350, 200);
 				text2.setPosition(700, 200);
 
+
 				window.draw(text);
-				window.draw(text1);
+				
+
+
+		
+				
+		
+			window.draw(text1);
+				
+		
  				window.draw(text2);
 			
 				window.draw(text4);
 				window.draw(text5);
 				window.display();
-
 			}
 			else if (op == false && infoscreen == false) {
-
 				window.draw(backgroundImage);
 				s3 = "hello! please select an operation!";
 				text3.setString(s3);
@@ -444,26 +433,26 @@ int main(int argc, char* argv[]) {
 				window.draw(infoButtonImage);
 				window.display();
 
+
 			}
 			else if (infoscreen == true && op == false) {
+				
+				
 				
 				window.draw(backgroundImage);
 				window.draw(backButtonImage);
 				window.draw(infotext);
 				window.display();
 				
-			}
-			else if (inputscreen == true && op == false) {
 
-				window.draw(backgroundImage);
-				window.draw(userButtonImage);
-				//window.draw(infotext);
-				window.display();
 
 			}
 		}
+
+		
 	return 0;
 }
+
 
 
 
