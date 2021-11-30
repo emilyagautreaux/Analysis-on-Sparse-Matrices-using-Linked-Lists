@@ -151,6 +151,36 @@ void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int
 		std::cout << "unable to do this operation";
 	}
 }
+
+void LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){
+	
+
+	if(m1->next == NULL){ //if there is one node in the linked list 
+		m1->val = static_cast<double>(1/m1->val); //take the inverse of that number;
+	}
+
+	if((m1rows == 2 ) && (m1cols == 2)){ //if 2x2 square matrix 
+		double invdeterminant = 1/((m1->val * m1->next->next->next->val) - (m1->next->val * m1->next->next->val)); // 1/(ad-bc)
+		std::cout<<invdeterminant<<std::endl;
+		
+		/*
+		[d   -b]
+		[-c   a]
+		*/
+
+		//calculating adjugate
+		this->append(0,0,invdeterminant * m1->next->next->next->val); // first node value = last node value
+		this->append(0,1,invdeterminant * -m1->next->val); //second node value = negative of second node value
+		this->append(1,0, invdeterminant * -m1->next->next->val); //third node value = negative of third node value
+		this->append(1,1,invdeterminant * m1->val); //last node value = first node value
+		
+		//other method I tried: 
+		// m1->next->next->next->val = invdeterminant * m1->val; //last node value = first node value
+		// m1->next->val = invdeterminant * -m1->next->val; //second node value = negative of second node value
+		// m1->next->next->val = invdeterminant * -m1->next->next->val; //third node value = negative of third node value
+		// m1->val = invdeterminant * m1->next->next->next->val; // first node value = last node value 	
+	}
+}
  
 void LinkedMatrix::append(int row, int col, int val) { // inserts a node to back of linked list
 
