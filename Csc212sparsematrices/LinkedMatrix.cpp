@@ -128,4 +128,4 @@ void LinkedMatrix::print(Node* node) {
 	}
 	std::cout << "nullptr";
 }
-
+//inverse function here
