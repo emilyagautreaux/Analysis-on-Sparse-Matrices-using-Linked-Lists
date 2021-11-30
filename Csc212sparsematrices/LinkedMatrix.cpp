@@ -285,6 +285,28 @@ std::vector<std::vector<int> > LinkedMatrix::Linked2Vector(int m1rows, int m1col
 		}	
 		return matrix;	
 	}
+	if(type == "Inverse"){
+		for(int i=0; i < m1rows; i++){		
+			for(int j=0; j < m1cols; j++){
+				if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
+					row.push_back(temp->val);
+					//std::cout << temp->val << " ";
+					//std::cout << "Lmatrix- row:" << temp->row << " col:" << temp->col << " val:" << temp->val << std::endl;
+					//move temp ptr to the next node
+					if(temp->next != nullptr){
+						temp= temp->next;
+					}
+				}
+				else{ //push a zero into that spot 
+					row.push_back(0);
+				}
+			}
+			matrix.push_back(row);
+			row.clear();
+		}	
+		return matrix;	
+	}
+
 	
 	if((type == "Addition") || (type == "Subtraction") ){ //want dimensions of largest matrix being added
 		if((m1rows * m1cols) >= (m2rows * m2cols) ){ //if matrix 1 is the same size or larger that matrix 2 
@@ -331,7 +353,3 @@ std::vector<std::vector<int> > LinkedMatrix::Linked2Vector(int m1rows, int m1col
 		}
 	}
 }
->>>>>>> e57e845271c6817c8602f7fd17d6b633178576f7
-=======
-
->>>>>>> parent of 145cebc (just to get my name on the contribution list)
