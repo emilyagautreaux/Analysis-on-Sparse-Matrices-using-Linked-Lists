@@ -147,6 +147,9 @@ void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int
 			}
 		}	
 	}
+	else {
+		std::cout << "unable to do this operation";
+	}
 }
  
 void LinkedMatrix::append(int row, int col, int val) { // inserts a node to back of linked list
@@ -230,7 +233,7 @@ std::vector<std::vector<int>> LinkedMatrix::Linked2Vector(int m1rows, int m1cols
 		return matrix;	
 	}
 	
-	if(type == "Multiplication"){ //dimensions would be m1rows x m2cols
+	if(type == "Multiplication" && m1rows == m2cols && this->head != NULL){ //dimensions would be m1rows x m2cols
 		for(int i=0; i < m1rows; i++){		
 			for(int j=0; j < m2cols; j++){
 				if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
