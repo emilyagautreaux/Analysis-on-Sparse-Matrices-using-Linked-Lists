@@ -13,11 +13,12 @@ public:
 	LinkedMatrix();
 	void append(int row, int col, int val);
 	~LinkedMatrix();
-	void print(Node* node);
-	std::vector<std::vector<int>> Linked2Vector(int rows, int cols);
+	void print(Node* node, std::string type);
+	std::vector<std::vector<int> > Linked2Vector(int m1rows, int m1cols, int m2rows, int m2cols, std::string type);
 	void addMatrix(Node* m1, Node *m2);
 	void subtractMatrix(Node* m1, Node* m2);
 	void multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols, int m1Cols);
+//	void inverseMatrix(Node* m1, Node* m2);
 	int find(Node* m, int r, int c);
 };
 
