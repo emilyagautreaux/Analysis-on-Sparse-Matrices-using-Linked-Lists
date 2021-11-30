@@ -181,9 +181,7 @@ void LinkedMatrix::print(Node* node, std::string type) { // the parameter is the
 	}
 	std::cout << "nullptr";
 }
-<<<<<<< HEAD
-//inverse function here
-=======
+
 
 //Convert linked list to 2D vector 
 std::vector<std::vector<int>> LinkedMatrix::Linked2Vector(int m1rows, int m1cols, int m2rows, int m2cols, std::string type){
@@ -304,3 +302,6 @@ std::vector<std::vector<int>> LinkedMatrix::Linked2Vector(int m1rows, int m1cols
 	}
 }
 >>>>>>> e57e845271c6817c8602f7fd17d6b633178576f7
+=======
+
+>>>>>>> parent of 145cebc (just to get my name on the contribution list)
