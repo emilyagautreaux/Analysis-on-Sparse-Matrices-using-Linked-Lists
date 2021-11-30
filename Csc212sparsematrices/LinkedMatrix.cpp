@@ -184,9 +184,9 @@ void LinkedMatrix::print(Node* node, std::string type) { // the parameter is the
 
 
 //Convert linked list to 2D vector 
-std::vector<std::vector<int>> LinkedMatrix::Linked2Vector(int m1rows, int m1cols, int m2rows, int m2cols, std::string type){
+std::vector<std::vector<int> > LinkedMatrix::Linked2Vector(int m1rows, int m1cols, int m2rows, int m2cols, std::string type){
 	
-	std::vector<std::vector<int>> matrix;
+	std::vector<std::vector<int> > matrix;
 	Node* temp = this->head;
 	std::vector<int> row;
 
