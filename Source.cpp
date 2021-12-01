@@ -54,26 +54,29 @@ int main(int argc, char* argv[]) {
 
 	LinkedMatrix* m3 = new LinkedMatrix(); //for addition
 	//LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
-//	LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
-
-///	m3->addMatrix(m1->head, m2->head); //add 
-//	m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m1Cols); //multiply
-//	m5->subtractMatrix(m1->head, m2->head); //subtract
+	//LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
+	LinkedMatrix *m6 = new LinkedMatrix(); //for inverse
+	//m3->addMatrix(m1->head, m2->head); //add 
+	//m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m1Cols); //multiply
+	//m5->subtractMatrix(m1->head, m2->head); //subtract
+	m6->inverseMatrix(m1->head, m1Rows, m1Cols); //inverse
 	
-	/*
+	
 	//Print linked list output 
-	m1->print(m1->head, "Matrix 1");	
-	m2->print(m2->head, "Matrix 2");	
-	m3->print(m3->head, "Addition");	
-	m4->print(m4->head, "Multiplication");	
-	m5->print(m5->head, "Subtraction");
+	// m1->print(m1->head, "Matrix 1");	
+	// m2->print(m2->head, "Matrix 2");	
+	// m3->print(m3->head, "Addition");	
+	// m4->print(m4->head, "Multiplication");	
+	// m5->print(m5->head, "Subtraction");
+	m6->print(m6->head, "Inverse");
+	
 
 	//print output in matrix format
-	std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 1");
-	PrintVec(vector);
-	std::vector<std::vector<int>> vector2 = m4->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Multiplication");
-	PrintVec(vector2);
-	*/
+	// std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 1");
+	// PrintVec(vector);
+	// std::vector<std::vector<int>> vector2 = m4->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Multiplication");
+	// PrintVec(vector2);
+	
 
 		// object for our window of size 1500x900
 		sf::RenderWindow window(sf::VideoMode(1500, 900), "Sparse Matrix Operations!");

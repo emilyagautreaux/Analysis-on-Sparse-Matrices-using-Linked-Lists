@@ -168,6 +168,47 @@ void LinkedMatrix::append(int row, int col, int val) { // inserts a node to back
 		temp->next = newNode;
 	}	
 }
+void LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){	
+
+	if(m1->next == NULL){ //if there is one node in the linked list 
+		m1->val = static_cast<double>(1.0/m1->val); //take the inverse of that number;
+	}
+
+	if((m1rows == 2 ) && (m1cols == 2)){ //if 2x2 square matrix 
+		double invdeterminant = 1.0/(static_cast<double>((m1->val * m1->next->next->next->val)) - static_cast<double>((m1->next->val * m1->next->next->val))); // 1/(ad-bc)
+		std::cout<<invdeterminant<<std::endl;
+		
+		/*
+		[d   -b]
+		[-c   a]
+		*/
+
+		//calculating adjugate
+		this->append(0,0,invdeterminant * m1->next->next->next->val); // first node value = last node value
+		this->append(0,1,invdeterminant * -m1->next->val); //second node value = negative of second node value
+		this->append(1,0, invdeterminant * -m1->next->next->val); //third node value = negative of third node value
+		this->append(1,1,invdeterminant * m1->val); //last node value = first node value
+		
+		//other method I tried: 
+		// m1->next->next->next->val = invdeterminant * m1->val; //last node value = first node value
+		// m1->next->val = invdeterminant * -m1->next->val; //second node value = negative of second node value
+		// m1->next->next->val = invdeterminant * -m1->next->next->val; //third node value = negative of third node value
+		// m1->val = invdeterminant * m1->next->next->next->val; // first node value = last node value 	
+	}
+	if ((m1rows ==3) && (m1cols ==3)){
+		double determinant = 0.0;
+		for (int i =0; i<3; i++){ //calculate determinant
+			determinant = determinant + (find(m1,0,i) * find(m1,1,(i+1)%3) * find(m1,2,(i+2)%3) - find(m1,1,(i+2)%3) * find(m1,2,(i+1)%3));
+		}
+		std::cout<<"determinant: "<<determinant<<std::endl;
+		for(int i=0; i<3; i++){
+			for( int j =0; j<3; j++){ //calculate invserse
+				double inv = find(m1,(j+1)%3, (i+1)%3) * find(m1,(j+2)%3, (i+2)%3) - ( find(m1,(j+1)%3,(i+2)%3) * find(m1,(j+2)%3, (i+1)%3) ) / determinant;
+				this->append(i,j,inv);
+			}
+		}
+	}
+}
 
 // print linked list 
 void LinkedMatrix::print(Node* node, std::string type) { // the parameter is the reference of the head of the linked list 
