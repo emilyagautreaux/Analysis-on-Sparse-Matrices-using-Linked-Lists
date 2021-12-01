@@ -301,7 +301,4 @@ std::vector<std::vector<int> > LinkedMatrix::Linked2Vector(int m1rows, int m1col
 		}
 	}
 }
->>>>>>> e57e845271c6817c8602f7fd17d6b633178576f7
-=======
 
->>>>>>> parent of 145cebc (just to get my name on the contribution list)
