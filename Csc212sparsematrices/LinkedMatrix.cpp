@@ -126,7 +126,7 @@ int LinkedMatrix::find(Node* m, int r, int c) {
 	return 0;
 }
 
-void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int m1Cols){
+bool LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int m1Cols){
 
 	int num1;
 	int num2;
@@ -145,9 +145,11 @@ void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int
 					this->append(i, j, sum);
 				}
 			}
-		}	
+		}
+		return false;
 	}
 	else {
+		return true;
 		std::cout << "unable to do this operation";
 	}
 }

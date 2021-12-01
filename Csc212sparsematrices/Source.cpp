@@ -41,8 +41,14 @@ LinkedMatrix* ReadFile(std::string fileName, int &rows, int &cols) {
 	return matrix;
 }
 
+
+
 //arguments ./prog matrix1.txt matrix2.txt
 int main(int argc, char* argv[]) {
+
+
+	std::vector<std::vector<int>> userm1;
+	
 
     std::string file1 = argv[1];
 	std::string file2 = argv[2];
@@ -53,7 +59,7 @@ int main(int argc, char* argv[]) {
 	LinkedMatrix* m1 = ReadFile(file1, m1Rows, m1Cols);
 	LinkedMatrix* m2 = ReadFile(file2, m2Rows, m2Cols);
 
-	//LinkedMatrix* m3 = new LinkedMatrix(); //for addition
+	 LinkedMatrix* m3 = new LinkedMatrix(); //for addition
 	//LinkedMatrix* m4 = new LinkedMatrix(); //for multiplication
 	//LinkedMatrix* m5 = new LinkedMatrix(); //for subtraction
 	LinkedMatrix *m6 = new LinkedMatrix(); //for inverse
@@ -61,7 +67,7 @@ int main(int argc, char* argv[]) {
 	//m3->addMatrix(m1->head, m2->head); //add 
 	//m4->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m1Cols); //multiply
 	//m5->subtractMatrix(m1->head, m2->head); //subtract
-	m6->inverseMatrix(m1->head, m1Rows, m1Cols); //inverse
+//	m6->inverseMatrix(m1->head, m1Rows, m1Cols); //inverse
 	
 	
 	//Print linked list output 
@@ -70,7 +76,7 @@ int main(int argc, char* argv[]) {
 	// m3->print(m3->head, "Addition");	
 	// m4->print(m4->head, "Multiplication");	
 	// m5->print(m5->head, "Subtraction");
-	m6->print(m6->head, "Inverse");
+	//->print(m6->head, "Inverse");
 
 
 	//print output in matrix format
@@ -95,36 +101,91 @@ int main(int argc, char* argv[]) {
 		}
 		
 		// creating a text variable named text 
-		sf::String s;
-		sf::Text text(s, font, 25);
-		text.setFillColor(sf::Color::Black);
+		sf::String m1text;
+		sf::Text m1Text(m1text, font, 25);
+		m1Text.setFillColor(sf::Color::Black);
 
 		// creating a text variable named text2
-		sf::String s1;
-		sf::Text text1(s1, font, 25);
-		text1.setFillColor(sf::Color::Black);
+		sf::String m2text;
+		sf::Text m2Text(m2text, font, 25);
+		m2Text.setFillColor(sf::Color::Black);
 
 		//// creating a text variable named text 3
-		sf::String s2;
-		sf::Text text2(s2, font, 25);
-		text2.setFillColor(sf::Color::Black);
+		sf::String m3text;
+		sf::Text m3Text(m3text, font, 25);
+		m3Text.setFillColor(sf::Color::Black);
 
 
-		sf::String s3;
-		sf::Text text3(s3, font, 25);
-		text3.setFillColor(sf::Color::Black);
+		sf::String hello;
+		sf::Text helloText(hello, font, 60);
+		helloText.setFillColor(sf::Color::Black);
+		helloText.setStyle(sf::Text::Bold | sf::Text::Underlined);
+		   
+		hello = "Hello! Welcome to the sparse matrix calculator!";
+		helloText.setString(hello);
+		helloText.setPosition(80, 170);
 
-		sf::String s4;
-		sf::Text text4(s4, font, 25);
-		text4.setFillColor(sf::Color::Black);
-		s4 = "*";
-		text4.setString(s4);
+		sf::String errort;
+		sf::Text errorText(errort, font, 50);
+		errorText.setFillColor(sf::Color::Red);
+		errorText.setStyle(sf::Text::Bold);
+
+		errort = "You have encountered an error.\nError: Matrix1 rows must equal Martrix2 columns.\nPlease fix inputs.";
+		errorText.setString(errort);
+		errorText.setPosition(200, 300);
+
+		sf::String oper;
+		sf::Text operText(oper, font, 60);
+		operText.setFillColor(sf::Color::Black);
+		operText.setStyle(sf::Text::Bold | sf::Text::Underlined);
+
+		oper = "Please select an operation.";
+		operText.setString(oper);
+		operText.setPosition(375, 170);
+
+		sf::String form;
+		sf::Text formText(form, font, 20);
+		formText.setFillColor(sf::Color::Black);
+		
+
+		form = "Format: Matrix1 operation Matrix2 = Resulting matrix";
+		formText.setString(form);
+		formText.setPosition(25, 700);
+
+		sf::String type;
+		sf::Text typeText(type, font, 40);
+		typeText.setFillColor(sf::Color::Black);
+		typeText.setStyle(sf::Text::Bold | sf::Text::Underlined);
+		typeText.setPosition(650, 50);
+
+		sf::String desc;
+		sf::Text descText(desc, font, 25);
+		descText.setFillColor(sf::Color::Black);
+
+
+		
+
+		desc = "- This program takes two sparse matricies read from files and performs mathematical operations on them. \n";
+		desc += "- For more information please click 'more info' below. \n \n \n";
+		desc += "- Developers: Mathew Ferreira, Amoy Scott, Emily Gautreaux, Whitney Schoellerman";
+		descText.setString(desc);
+		descText.setPosition(80, 300);
+
+	
+
+		sf::String sub;
+		sf::Text subText(sub, font, 90);
+		subText.setFillColor(sf::Color::Black);
+		subText.setStyle(sf::Text::Bold);
+		subText.setPosition(400, 250);
 
 		sf::String s5;
-		sf::Text text5(s5, font, 25);
+		sf::Text text5(s5, font, 90);
 		text5.setFillColor(sf::Color::Black);
+		text5.setStyle(sf::Text::Bold);
 		s5 = "=";
 		text5.setString(s5);
+		text5.setPosition(950, 250);
 
 
 		sf::String info;
@@ -143,6 +204,10 @@ int main(int argc, char* argv[]) {
 		bool op = false;
 		bool inputscreen = false;
 		bool infoscreen = false;
+		bool show = false;
+		bool showm3 = false;
+		bool error = false;
+		bool done = false;
 		
 		sf::Texture background;
 		sf::Sprite backgroundImage;
@@ -157,27 +222,27 @@ int main(int argc, char* argv[]) {
 		sf::Sprite backButtonImage;
 		if (!backButton.loadFromFile("back.png"))
 			std::cout << "Can't find the image" << std::endl;
-		backButtonImage.setPosition(2, 2);
+		backButtonImage.setPosition(25, 25);
 
 		float backButtonWidth = backButtonImage.getLocalBounds().width;
 		float backButtonHeight = backButtonImage.getLocalBounds().height;
 		backButtonImage.setTexture(backButton);
 
-		sf::Texture infoButton;
-		sf::Sprite infoButtonImage;
-		if (!infoButton.loadFromFile("info.png"))
+		sf::Texture calcButton;
+		sf::Sprite calcButtonImage;
+		if (!calcButton.loadFromFile("calc.png"))
 			std::cout << "Can't find the image" << std::endl;
-		infoButtonImage.setPosition(100, 100);
+		calcButtonImage.setPosition(600, 800);
 
-		float infoButtonWidth = infoButtonImage.getLocalBounds().width;
-		float infoButtonHeight = infoButtonImage.getLocalBounds().height;
-		infoButtonImage.setTexture(infoButton);
+		float calcButtonWidth = calcButtonImage.getLocalBounds().width;
+		float calcButtonHeight = calcButtonImage.getLocalBounds().height;
+		calcButtonImage.setTexture(calcButton);
 
 		sf::Texture addButton;
 		sf::Sprite addButtonImage;
 		if (!addButton.loadFromFile("add.png"))
 			std::cout << "Can't find the image" << std::endl;
-		addButtonImage.setPosition(50.0, 500.0);
+		addButtonImage.setPosition(100, 600);
 
 		float addButtonWidth = addButtonImage.getLocalBounds().width;
 		float addButtonHeight = addButtonImage.getLocalBounds().height;
@@ -187,7 +252,7 @@ int main(int argc, char* argv[]) {
 		sf::Sprite multButtonImage;
 		if (!multButton.loadFromFile("multiply.png"))
 			std::cout << "Can't find the image" << std::endl;
-		multButtonImage.setPosition(200, 500);
+		multButtonImage.setPosition(750, 600);
 
 		float multButtonWidth = multButtonImage.getLocalBounds().width;
 		float multButtonHeight = multButtonImage.getLocalBounds().height;
@@ -197,32 +262,54 @@ int main(int argc, char* argv[]) {
 		sf::Sprite subButtonImage;
 		if (!subButton.loadFromFile("subtract.png"))
 			std::cout << "Can't find the image" << std::endl;
-		subButtonImage.setPosition(500, 500);
+		subButtonImage.setPosition(375, 600);
 
 		float subButtonWidth = subButtonImage.getLocalBounds().width;
 		float subButtonHeight = subButtonImage.getLocalBounds().height;
 		subButtonImage.setTexture(subButton);
 
+
+		sf::Texture infoButton;
+		sf::Sprite infoButtonImage;
+		if (!infoButton.loadFromFile("info.png"))
+			std::cout << "Can't find the image" << std::endl;
+		infoButtonImage.setPosition(100, 800);
+
+		float infoButtonWidth = infoButtonImage.getLocalBounds().width;
+		float infoButtonHeight = infoButtonImage.getLocalBounds().height;
+		infoButtonImage.setTexture(infoButton);
+
+		sf::Texture nextButton;
+		sf::Sprite nextButtonImage;
+		if (!nextButton.loadFromFile("next.png"))
+			std::cout << "Can't find the image" << std::endl;
+		nextButtonImage.setPosition(1100, 800);
+
+		float nextButtonWidth = nextButtonImage.getLocalBounds().width;
+		float nextButtonHeight = nextButtonImage.getLocalBounds().height;
+		nextButtonImage.setTexture(nextButton);
+
 		sf::Texture invButton;
 		sf::Sprite invButtonImage;
 		if (!invButton.loadFromFile("inverse.png"))
 			std::cout << "Can't find the image" << std::endl;
-		invButtonImage.setPosition(800, 500);
+		invButtonImage.setPosition(1125, 600);
 
 		float invButtonWidth = invButtonImage.getLocalBounds().width;
 		float invButtonHeight = invButtonImage.getLocalBounds().height;
 		invButtonImage.setTexture(invButton);
 
-
-		sf::Texture userButton;
-		sf::Sprite userButtonImage;
-		if (!userButton.loadFromFile("user.png"))
+		sf::Texture goButton;
+		sf::Sprite goButtonImage;
+		if (!goButton.loadFromFile("go.png"))
 			std::cout << "Can't find the image" << std::endl;
-		userButtonImage.setPosition(800, 500);
+		goButtonImage.setPosition(100, 500);
 
-		float userButtonWidth = userButtonImage.getLocalBounds().width;
-		float userButtonHeight = userButtonImage.getLocalBounds().height;
-		userButtonImage.setTexture(userButton);
+		float goButtonWidth = goButtonImage.getLocalBounds().width;
+		float goButtonHeight = goButtonImage.getLocalBounds().height;
+		goButtonImage.setTexture(goButton);
+
+		
 
 		// making sure window is open 
 		while (window.isOpen())
@@ -265,10 +352,19 @@ int main(int argc, char* argv[]) {
 					{
 						infoButtonImage.setColor(sf::Color(250, 20, 20));
 					}
-					else if (userButtonImage.getGlobalBounds().contains(mousePosF))
+					else if (goButtonImage.getGlobalBounds().contains(mousePosF))
 					{
-						userButtonImage.setColor(sf::Color(250, 20, 20));
+						goButtonImage.setColor(sf::Color(250, 20, 20));
 					}
+					else if (nextButtonImage.getGlobalBounds().contains(mousePosF))
+					{
+						nextButtonImage.setColor(sf::Color(250, 20, 20));
+					}
+					else if (calcButtonImage.getGlobalBounds().contains(mousePosF))
+					{
+						calcButtonImage.setColor(sf::Color(250, 20, 20));
+					}
+				
 					else
 					{
 						addButtonImage.setColor(sf::Color(255, 255, 255));
@@ -277,7 +373,10 @@ int main(int argc, char* argv[]) {
 						invButtonImage.setColor(sf::Color(255, 255, 255));
 						backButtonImage.setColor(sf::Color(255, 255, 255));
 						infoButtonImage.setColor(sf::Color(255, 255, 255));
-						userButtonImage.setColor(sf::Color(255, 255, 255));
+						goButtonImage.setColor(sf::Color(255, 255, 255));
+						nextButtonImage.setColor(sf::Color(255, 255, 255));
+						calcButtonImage.setColor(sf::Color(255, 255, 255));
+						
 					}
 				}
 				break;
@@ -285,110 +384,143 @@ int main(int argc, char* argv[]) {
 
 				case sf::Event::MouseButtonPressed:
 				{
-					if (op == false) {
-						
-						s = " ";
-						s1 = " ";
-						s2 = " ";
+					
+						m1text = " ";
+						m2text = " ";
+						m3text = " ";
 						sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 						sf::Vector2f mousePosF(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 
 
 
+						if (op == false) {
 
-						// make m1 into vector 
-						std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 1");
+							// make m1 into vector 
+							std::vector<std::vector<int>> vector = m1->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 1");
 
-						// this will take all values of m1 and append them into a string named "s"
-						// it will then assign string s to the text varible using text.setstring
-						for (int i = 0; i < vector.size(); i++) {
+							// this will take all values of m1 and append them into a string named "s"
+							// it will then assign string s to the text varible using text.setstring
+							for (int i = 0; i < vector.size(); i++) {
 
-							for (int j = 0; j < vector[i].size(); j++) {
-								std::stringstream ss;
-								std::string str;
-								ss << vector[i][j];
-								ss >> str;
-								s += str + " ";
-								//text.setString(s);
+								for (int j = 0; j < vector[i].size(); j++) {
+									std::stringstream ss;
+									std::string str;
+									ss << vector[i][j];
+									ss >> str;
+									m1text += str + " ";
+									//text.setString(s);
+								}
+								m1text += "\n";
+								m1Text.setString(m1text);
 							}
-							s += "\n";
-							text.setString(s);
 						}
-						
-						// same as above but for m2 and text1 object
-						std::vector<std::vector<int> > vector2 = m2->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 2");
-						for (int i = 0; i < vector2.size(); i++) {
+						if (op == false) {
 
-							for (int j = 0; j < vector2[i].size(); j++) {
-								std::stringstream tt;
-								std::string str;
-								tt << vector2[i][j];
-								tt >> str;
-								s1 += str + " ";
-								//text2.setString(s1);
+							// same as above but for m2 and text1 object
+							std::vector<std::vector<int> > vector2 = m2->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Matrix 2");
+							for (int i = 0; i < vector2.size(); i++) {
+
+								for (int j = 0; j < vector2[i].size(); j++) {
+									std::stringstream tt;
+									std::string str;
+									tt << vector2[i][j];
+									tt >> str;
+									m2text += str + " ";
+									//text2.setString(s1);
+								}
+								m2text += "\n";
+								m2Text.setString(m2text);
 							}
-							s1 += "\n";
-							text1.setString(s1);
 						}
-						if (addButtonImage.getGlobalBounds().contains(mousePosF))
+						if (addButtonImage.getGlobalBounds().contains(mousePosF)&& show == false && showm3 == false)
 						{
+							type = "Addition";
+							typeText.setString(type);
+							sub = "+";
 							m3->addMatrix(m1->head, m2->head);
-							op = true;
+							show = true;
+							op = false;
 						}
-						else if (multButtonImage.getGlobalBounds().contains(mousePosF))
+						else if (multButtonImage.getGlobalBounds().contains(mousePosF) && show == false && showm3 == false)
 						{
-							m3->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m2Cols);
-							op = true;
+							type = "Multiplication";
+							typeText.setString(type);
+							sub = "X";
+							error = m3->multiplyMatrix(m1->head, m2->head, m1Rows, m2Cols, m2Cols);
+							show = true;
+							op = false;
 						}
-						else if (subButtonImage.getGlobalBounds().contains(mousePosF))
+						else if (subButtonImage.getGlobalBounds().contains(mousePosF) && show == false && showm3 == false)
 						{
+							type = "Subtraction";
+							typeText.setString(type);
+							sub = "-";
 							m3->subtractMatrix(m1->head, m2->head);
-							op = true;
+							show = true;
+							op = false;
 						}
-						else if (invButtonImage.getGlobalBounds().contains(mousePosF))
+						else if (invButtonImage.getGlobalBounds().contains(mousePosF) && show == false && showm3 == false)
 						{
-							std::cout << "not here yet";
-							op = true;
+							type = "Inverse";
+							typeText.setString(type);
+							sub = "Inverse";
+							subText.setCharacterSize(25);
+							show = true;
+							op = false;
 						}
 						else if (backButtonImage.getGlobalBounds().contains(mousePosF))
 						{
-							//op = false;
+							op = false;
 							infoscreen = false;
 						}
 						else if (infoButtonImage.getGlobalBounds().contains(mousePosF))
 						{
 							infoscreen = true;
 						}
-						else if (userButtonImage.getGlobalBounds().contains(mousePosF))
+						else if (nextButtonImage.getGlobalBounds().contains(mousePosF))
 						{
-							inputscreen = true;
-
+							op = true;
 						}
+						else if (calcButtonImage.getGlobalBounds().contains(mousePosF))
+						{
+							showm3 = true;
+						}
+						
+						else if (goButtonImage.getGlobalBounds().contains(mousePosF))
+						{
+							
+							
+							show = true;
+							op = false;
+							
+						}
+					
 						// adding the matricies and storing them into m3
 
 
+						if (op == false) {
 
 
-						// make m3 into vector 
-						std::vector<std::vector<int>> vector3 = m3->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Multiplication");
+							// make m3 into vector 
+							std::vector<std::vector<int>> vector3 = m3->Linked2Vector(m1Rows, m1Cols, m2Rows, m2Cols, "Multiplication");
 
-						//same as above but for m3 and text2 object
-						for (int i = 0; i < vector3.size(); i++) {
+							//same as above but for m3 and text2 object
+							for (int i = 0; i < vector3.size(); i++) {
 
-							for (int j = 0; j < vector3[i].size(); j++) {
-								std::stringstream tt;
-								std::string str;
-								tt << vector3[i][j];
-								tt >> str;
-								s2 += str + " ";
-								//text2.setString(s1);
+								for (int j = 0; j < vector3[i].size(); j++) {
+									std::stringstream tt;
+									std::string str;
+									tt << vector3[i][j];
+									tt >> str;
+									m3text += str + " ";
+									
+								}
+								m3text += "\n";
+								m3Text.setString(m3text);
+
 							}
-							s2 += "\n";
-							text2.setString(s2);
-
 						}
-						
-					}
+					
 					
 					
 				}
@@ -413,59 +545,85 @@ int main(int argc, char* argv[]) {
 			// draw will put the object on screen 
 			// display will show us the window
 
-			window.clear(sf::Color::White);
+			//window.clear();
 
-		
-
-			if (op == true) {
-
-				window.draw(backgroundImage);
-				text.setPosition(10, 200);
-				text4.setPosition(175, 250);
-				text5.setPosition(600, 250);
-				text1.setPosition(350, 200);
-				text2.setPosition(700, 200);
-
-				window.draw(text);
-				window.draw(text1);
- 				window.draw(text2);
 			
-				window.draw(text4);
-				window.draw(text5);
-				window.display();
 
-			}
-			else if (op == false && infoscreen == false) {
+			if (op == true && done == false) {
 
+
+				window.clear();
 				window.draw(backgroundImage);
-				s3 = "hello! please select an operation!";
-				text3.setString(s3);
-				text3.setPosition(600, 200);
-				window.draw(text3);
+				window.draw(operText);
 				window.draw(addButtonImage);
 				window.draw(multButtonImage);
 				window.draw(invButtonImage);
 				window.draw(subButtonImage);
-				window.draw(infoButtonImage);
+
 				window.display();
 
+
+
+
 			}
-			else if (infoscreen == true && op == false) {
-				
+			else if (show == true && op == false && done == false) {
+				window.clear();
+				window.draw(backgroundImage);
+				subText.setString(sub);
+				m1Text.setPosition(75, 200);
+
+				//text5.setPosition(600, 250);
+				m2Text.setPosition(575, 200);
+				m3Text.setPosition(1100, 200);
+				window.draw(formText);
+
+				window.draw(m1Text);
+				window.draw(m2Text);
+				window.draw(calcButtonImage);
+				window.draw(typeText);
+				window.draw(subText);
+				window.draw(text5);
+				if (showm3) {
+					if (error) {
+
+
+						window.clear();
+						window.draw(backgroundImage);
+						window.draw(errorText);
+
+					}
+					else {
+						done = true;
+						window.draw(m3Text);
+					}
+
+				}
+
+
+				window.display();
+			}
+
+			else if (infoscreen == true && op == false && done == false) {
+
+				window.clear();
 				window.draw(backgroundImage);
 				window.draw(backButtonImage);
 				window.draw(infotext);
 				window.display();
-				
-			}
-			else if (inputscreen == true && op == false) {
 
+			}
+
+			else if (op == false && infoscreen == false && done == false) {
+				window.clear();
 				window.draw(backgroundImage);
-				window.draw(userButtonImage);
-				//window.draw(infotext);
+				window.draw(infoButtonImage);
+				window.draw(helloText);
+				window.draw(descText);
+				window.draw(nextButtonImage);
 				window.display();
 
 			}
+			
 		}
 	return 0;
 }
