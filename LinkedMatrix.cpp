@@ -196,14 +196,15 @@ void LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){
 		// m1->val = invdeterminant * m1->next->next->next->val; // first node value = last node value 	
 	}
 	if ((m1rows ==3) && (m1cols ==3)){
-		double determinant = 0.0;
+		float determinant = 0;
 		for (int i =0; i<3; i++){ //calculate determinant
-			determinant = determinant + (find(m1,0,i) * find(m1,1,(i+1)%3) * find(m1,2,(i+2)%3) - find(m1,1,(i+2)%3) * find(m1,2,(i+1)%3));
+			determinant = determinant + find(m1,0,i) * (find(m1,1,(i+1)%3) * find(m1,2,(i+2)%3) - find(m1,1,(i+2)%3) * find(m1,2,(i+1)%3)) ;
 		}
 		std::cout<<"determinant: "<<determinant<<std::endl;
+		
 		for(int i=0; i<3; i++){
 			for( int j =0; j<3; j++){ //calculate invserse
-				double inv = find(m1,(j+1)%3, (i+1)%3) * find(m1,(j+2)%3, (i+2)%3) - ( find(m1,(j+1)%3,(i+2)%3) * find(m1,(j+2)%3, (i+1)%3) ) / determinant;
+				double inv = find(m1,(j+1)%3,(i+1)%3) * find(m1,(j+2)%3,(i+2)%3) - (find(m1,(j+1)%3,(i+2)%3) * find(m1,(j+2)%3,(i+1)%3)) / determinant;
 				this->append(i,j,inv);
 			}
 		}
