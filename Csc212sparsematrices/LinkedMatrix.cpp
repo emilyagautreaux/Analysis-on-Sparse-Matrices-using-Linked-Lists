@@ -184,27 +184,36 @@ void LinkedMatrix::print(Node* node, std::string type) { // the parameter is the
 
 
 //Convert linked list to 2D vector 
-void LinkedMatrix::Linked2Vector(int rows, int cols, std::vector<std::vector<int>> &vector){
-	Node* temp = this->head;
-	std::vector<int> row;
+// void LinkedMatrix::Linked2Vector(int rows1, int cols1, int rows2, int cols2, std::vector<std::vector<int>> &vector, std::string type){
+// 	Node* temp = this->head;
+// 	int rows, cols;
+// 	std::vector<int> row;
+// 	if( type == "Addition" || type == "Subtraction"){
+		
+// 	}
+// 	if(type == "Multiplication" && rows1 == cols2 && this->head != NULL){ //dimensions would be m1rows x m2cols
+// 		rows = rows1;
+// 		cols = cols2;
+// 	}	
+
 	
-		for(int i=0; i < rows; i++){		
-			for(int j=0; j < cols; j++){
-				if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
-					row.push_back(temp->val);
-					//std::cout << temp->val << " ";
-					//std::cout << "Lmatrix- row:" << temp->row << " col:" << temp->col << " val:" << temp->val << std::endl;
-					//move temp ptr to the next node
-					if(temp->next != nullptr){
-						temp= temp->next;
-					}
-				}
-				else{ //push a zero into that spot 
-					row.push_back(0);
-				}
-			}
-			vector.push_back(row);
-			row.clear();
-		}	
-}
+// 		for(int i=0; i < rows; i++){		
+// 			for(int j=0; j < cols; j++){
+// 				if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
+// 					row.push_back(temp->val);
+// 					//std::cout << temp->val << " ";
+// 					//std::cout << "Lmatrix- row:" << temp->row << " col:" << temp->col << " val:" << temp->val << std::endl;
+// 					//move temp ptr to the next node
+// 					if(temp->next != nullptr){
+// 						temp= temp->next;
+// 					}
+// 				}
+// 				else{ //push a zero into that spot 
+// 					row.push_back(0);
+// 				}
+// 			}
+// 			vector.push_back(row);
+// 			row.clear();
+// 		}	
+// }
 
