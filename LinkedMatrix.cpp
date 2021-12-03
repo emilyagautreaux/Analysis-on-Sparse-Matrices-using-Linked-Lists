@@ -126,7 +126,7 @@ int LinkedMatrix::find(Node* m, int r, int c) {
 	return 0;
 }
 
-void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int m1Cols){
+bool LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int m1Cols){
 
 	int num1;
 	int num2;
@@ -146,9 +146,10 @@ void LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int
 				}
 			}
 		}	
+		return false;
 	}
 	else {
-		std::cout << "unable to do this operation";
+		return true;
 	}
 }
  
@@ -168,13 +169,14 @@ void LinkedMatrix::append(int row, int col, int val) { // inserts a node to back
 		temp->next = newNode;
 	}	
 }
-void LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){	
+bool LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){	
 
 	if(m1->next == NULL){ //if there is one node in the linked list 
 		m1->val = static_cast<double>(1.0/m1->val); //take the inverse of that number;
+		return false;
 	}
 
-	if((m1rows == 2 ) && (m1cols == 2)){ //if 2x2 square matrix 
+	else if((m1rows == 2 ) && (m1cols == 2)){ //if 2x2 square matrix 
 		double invdeterminant = 1.0/(static_cast<double>((m1->val * m1->next->next->next->val)) - static_cast<double>((m1->next->val * m1->next->next->val))); // 1/(ad-bc)
 		std::cout<<invdeterminant<<std::endl;
 		
@@ -194,8 +196,9 @@ void LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){
 		// m1->next->val = invdeterminant * -m1->next->val; //second node value = negative of second node value
 		// m1->next->next->val = invdeterminant * -m1->next->next->val; //third node value = negative of third node value
 		// m1->val = invdeterminant * m1->next->next->next->val; // first node value = last node value 	
-	}
-	if ((m1rows ==3) && (m1cols ==3)){
+
+		return false;
+	}else if ((m1rows ==3) && (m1cols ==3)){
 		float determinant = 0;
 		for (int i =0; i<3; i++){ //calculate determinant
 			determinant = determinant + find(m1,0,i) * (find(m1,1,(i+1)%3) * find(m1,2,(i+2)%3) - find(m1,1,(i+2)%3) * find(m1,2,(i+1)%3)) ;
@@ -208,6 +211,10 @@ void LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){
 				this->append(i,j,inv);
 			}
 		}
+		return false;
+	}
+	else {
+		return true;
 	}
 }
 
@@ -227,7 +234,7 @@ void LinkedMatrix::print(Node* node, std::string type) { // the parameter is the
 //Convert linked list to 2D vector 
 void LinkedMatrix::Linked2Vector(int rows1, int cols1,int rows2, int cols2, std::vector<std::vector<int>> &vector, std::string type){
 	Node* temp = this->head;
-	int rows, cols;
+	int rows = 0, cols = 0;
 	std::vector<int> row;
 
 	if (type == "Matrix 1"){
@@ -277,3 +284,4 @@ void LinkedMatrix::Linked2Vector(int rows1, int cols1,int rows2, int cols2, std:
 		row.clear();
 	}
 }
+

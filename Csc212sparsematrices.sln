@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Csc212sparsematrices", "Csc212sparsematrices\Csc212sparsematrices.vcxproj", "{B54F7684-B994-4465-A0A5-459EFAADC739}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Csc212sparsematrices", "Csc212sparsematrices.vcxproj", "{B54F7684-B994-4465-A0A5-459EFAADC739}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +26,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B5A7AD28-03B4-4BD2-8FF7-F4401E0209A7}
+		SolutionGuid = {3FBC1A31-B043-49DE-8C2A-428601BF3F5B}
 	EndGlobalSection
 EndGlobal
