@@ -2,7 +2,6 @@
 #include<vector>
 #include "LinkedMatrix.h"
 
-
 LinkedMatrix::LinkedMatrix() { //constructor
 	head = NULL;
 }
@@ -21,49 +20,42 @@ LinkedMatrix::~LinkedMatrix() { //deconstrucotr (idk if this will work, it needs
 
 void LinkedMatrix::addMatrix(Node* m1,Node* m2) {
 
-	while (m1 != NULL && m2 != NULL) {
-
-		// if both rows are equal 
-		if (m1->row == m2->row) {
-
-			// if columns are equal 
-			if (m1->col == m2->col) {
-				this->append(m1->row, m1->col, m1->val + m2->val);
-				m1 = m1->next;
-				m2 = m2->next;
-			}
-			// m1 column being less than m2
-			else {
-				if (m1->col < m2->col) {
-					this->append(m1->row, m1->col, m1->val);
-					m1 = m1->next;
-				}
-				// m2 column less than m1 
-				else {
-					this->append(m2->row, m2->col, m2->val);
-					m2 = m2->next;
+	while (m1 != NULL && m2 != NULL) { //while m1 and m2 matrices are not empty 
+		
+		if (m1->row == m2->row) { // if both rows are equal 			
+			if (m1->col == m2->col) { // ifcolumns are equal 
+				this->append(m1->row, m1->col, m1->val + m2->val); //create new node at that row and column index and add values 
+				m1 = m1->next; //traverse to next node 
+				m2 = m2->next; //traverse to next node
+			}			
+			else { //m1 and m2 node are not at the same index 
+				if (m1->col < m2->col) { // if m1 column is less than m2 column
+					this->append(m1->row, m1->col, m1->val); //create new node with m1 row, column, and value
+					m1 = m1->next; //traverse to next node 
+				}				
+				else { // m2 column less than m1 
+					this->append(m2->row, m2->col, m2->val); //create new node with m2 row, column, and value 
+					m2 = m2->next; //traverse to next node 
 				}
 			}
 		}		
 		else { // rows are not equal 			
 			if (m1->row < m2->row) { // if m1 row is less than m2 
-				this->append(m1->row, m1->col, m1->val);
-				m1 = m1->next;
+				this->append(m1->row, m1->col, m1->val); //append index and value to linked list 
+				m1 = m1->next; //go to the next node 
 			}			
 			else { // if m2 row is less than m1
-				this->append(m2->row, m2->col, m2->val);
-				m2 = m2->next;
+				this->append(m2->row, m2->col, m2->val); //append index and value to linked list 
+				m2 = m2->next; //go to next node 
 			}
 		}
 	}	
 	while (m1 != NULL) { // if m1 is larger than m2 add remaining values 
-		this->append(m1->row, m1->col, m1->val);
-		m1 = m1->next;
-	}
-
-	//if m2 is larger than m2 add remaining values
-	while (m2 != NULL) {
-		this->append(m2->row, m2->col, m2->val);
+		this->append(m1->row, m1->col, m1->val); //append nodes of remaining values 
+		m1 = m1->next; 
+	}	
+	while (m2 != NULL) { //if m2 is larger than m2 add remaining values
+		this->append(m2->row, m2->col, m2->val); //append nodes of remaining values 
 		m2 = m2->next;
 	}
 }
