@@ -156,10 +156,10 @@ void LinkedMatrix::append(int row, int col, int val) { // inserts a node to back
 	else { //linked list contains nodes 
 		Node* temp = head; //initialize temporary pointer that starts at the head of linked list 
 		//traverse through linked list until last node is found  
-		while (temp->next != NULL) { // while temp pointing to node whose next pointer is not NULL 
-			temp = temp->next; //temp point to next node 
+		while (temp->next != NULL) { // while temp pointing to node whose next pointer is another node (not NULL)
+			temp = temp->next; //have temp point to next node 
 		}
-		//last node is found - create new node 
+		//last node is found - temp->next = NULL
 		temp->next = newNode; //move next pointer of the previous last node to newly created node 
 	}	
 }
