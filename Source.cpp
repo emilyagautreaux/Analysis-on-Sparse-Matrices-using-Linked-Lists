@@ -12,14 +12,15 @@ LinkedMatrix* ReadFile(std::string fileName, int& rows, int& cols);
 void PrintVec(std::vector<std::vector<int> > vector);
 
 
-//This function reads given text files and creates a Linked Matrix
+//This function reads given text files os sparse matrices and creates a Linked Matrix
 LinkedMatrix* ReadFile(std::string fileName, int& rows, int& cols) {
-	int rowCount = 0, colCount = 0;
+	int rowCount = 0, colCount = 0; //Counters to keep track of rows and columns
 	std::ifstream inFile(fileName);
 	std::string line;
 	//create a new LinkedMatrix
 	LinkedMatrix* matrix = new LinkedMatrix();
 
+	//while file still has additional lines, keep reading lines
 	while (getline(inFile, line)) {
 		std::istringstream sstream(line);
 		int num;
@@ -30,20 +31,24 @@ LinkedMatrix* ReadFile(std::string fileName, int& rows, int& cols) {
 				matrix->append(rowCount, colCount, num);
 				//std::cout << "Row:" << rowCount << " Col: "<< colCount << " Value:"<< num << std::endl;
 			}
+			//increment column count
 			colCount++;
 		}
 		//increment rowcount
 		rowCount++;
 	}
+	//update rows and col parameters of matrix
 	rows = rowCount;
 	cols = colCount;
+	//close file and return the new LinkedMatrix list
 	inFile.close();
 	return matrix;
 }
 
 
-
+//Program command line input format
 //arguments ./prog matrix1.txt matrix2.txt
+//This program takes in two text files of sparse matrices that will be used to perform Matrix Math operations
 int main(int argc, char* argv[]) {
 
 

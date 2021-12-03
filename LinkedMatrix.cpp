@@ -223,12 +223,12 @@ void LinkedMatrix::print(Node* node, std::string type) { // the parameter is the
 	std::cout << "nullptr";
 }
 
-//Convert linked list to 2D vector 
+//Convert Matrixlinked list to 2D vector 
 void LinkedMatrix::Linked2Vector(int rows1, int cols1,int rows2, int cols2, std::vector<std::vector<int>> &vector, std::string type){
 	Node* temp = this->head;
 	int rows = 0, cols = 0;
 	std::vector<int> row;
-
+	//The parameters of matrices needed to print vary depending on which operation (if any) have been preformed
 	if (type == "Matrix 1"){
 		rows = rows1;
 		cols = cols1;
@@ -259,7 +259,9 @@ void LinkedMatrix::Linked2Vector(int rows1, int cols1,int rows2, int cols2, std:
 		rows = rows1;
 		cols = cols1;
 	}	
-		
+	// Once the parameters of the matrix to be printed are found, a set of nested for loops
+	//cycle over the linked list. If there is a nonzero element at that particular [row]&[col] that value is
+	//pushed into the appropriate spot, if no elements exist at that row/col that position is filled with a zero	
 	for(int i=0; i < rows; i++){		
 		for(int j=0; j < cols; j++){
 			if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
