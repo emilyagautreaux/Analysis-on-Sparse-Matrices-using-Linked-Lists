@@ -18,3 +18,23 @@ Node::~Node() {
 
 	
 }
+
+
+void Node::deleteList(Node** head)
+{
+
+	/* deref head to get the real head */
+	Node* current = *head;
+	Node* next = NULL;
+
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current);
+		current = next;
+	}
+
+	/* deref head to affect the real head back
+		in the caller. */
+	*head = NULL;
+}
