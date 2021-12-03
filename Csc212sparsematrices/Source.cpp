@@ -171,6 +171,15 @@ int main(int argc, char* argv[]) {
 		descText.setString(desc);
 		descText.setPosition(80, 300);
 
+		sf::String ex;
+		sf::Text exText(ex, font, 20);
+		exText.setFillColor(sf::Color::Black);
+		
+		ex = "Please press the Escape key to exit.";
+	
+		exText.setString(ex);
+		exText.setPosition(1050,700);
+
 	
 
 		sf::String sub;
@@ -192,12 +201,15 @@ int main(int argc, char* argv[]) {
 		sf::Text infotext(info, font, 25);
 		infotext.setFillColor(sf::Color::Black);
 		info = "This program takes in input of two sparse matricies and uses linked lists to do mathematical operations on them";
-		info += "\nYou can perform an operation by left clicking an operation type.\n";
-		info += "You may only do one operation per execution of the program and input sizes for a matrix is limited due to screen space.\n";
+		info += "\nYou can perform an operation by left clicking an operation type. Then click 'Calculate'.\n";
+		info += "Only one operation per execution of the program is possible and input sizes for a matrix is limited to 12x12.\n";
 		info += "This perform operations such as add, multiply, subtract or inverse multiply,";
 		info += " of the matrices in their linked list \nform with only non zero values.";
-		info += "The result should consist of a sparse matrix, obtained by operating the two input matrices.";
-		info += "\n \n \n Example: M1+M2=M3, M1 and M2 being input from files and M3 being the result.";
+		info += "The result should consist of a sparse matrix, obtained by operating the two input matrices.\n";
+		info += "In order for multiplication operations to execute sucessfully please ensure that number of rows of Matrix1.txt\n";
+		info += "is equivelent to the number of columns in Matrix2.txt.";
+		info += "\n \n \n \n \nExample operation where M1 = Matrix1.txt, M2 = Matrix2.txt and M3 = Resulting matrix after addition.";
+		info += "\nM1+M2=M3:";
 		infotext.setString(info);
 		infotext.setPosition(50, 90);
 
@@ -258,6 +270,13 @@ int main(int argc, char* argv[]) {
 		float multButtonHeight = multButtonImage.getLocalBounds().height;
 		multButtonImage.setTexture(multButton);
 
+		sf::Texture exaddButton;
+		sf::Sprite exaddButtonImage;
+		if (!exaddButton.loadFromFile("example.png"))
+			std::cout << "Can't find the image" << std::endl;
+		exaddButtonImage.setPosition(300, 500);
+		exaddButtonImage.setTexture(exaddButton);
+
 		sf::Texture subButton;
 		sf::Sprite subButtonImage;
 		if (!subButton.loadFromFile("subtract.png"))
@@ -308,6 +327,8 @@ int main(int argc, char* argv[]) {
 		float goButtonWidth = goButtonImage.getLocalBounds().width;
 		float goButtonHeight = goButtonImage.getLocalBounds().height;
 		goButtonImage.setTexture(goButton);
+
+	
 
 		
 
@@ -364,6 +385,7 @@ int main(int argc, char* argv[]) {
 					{
 						calcButtonImage.setColor(sf::Color(250, 20, 20));
 					}
+					
 				
 					else
 					{
@@ -376,6 +398,7 @@ int main(int argc, char* argv[]) {
 						goButtonImage.setColor(sf::Color(255, 255, 255));
 						nextButtonImage.setColor(sf::Color(255, 255, 255));
 						calcButtonImage.setColor(sf::Color(255, 255, 255));
+						
 						
 					}
 				}
@@ -494,6 +517,7 @@ int main(int argc, char* argv[]) {
 							op = false;
 							
 						}
+						
 					
 						// adding the matricies and storing them into m3
 
@@ -533,7 +557,13 @@ int main(int argc, char* argv[]) {
 				case sf::Event::Closed:
 					window.close();
 					break;
-				
+				case sf::Event::KeyPressed:
+					if (event.key.code == sf::Keyboard::Escape)
+					{
+
+						window.close();
+						break;
+					}
 				 
 				}
 				
@@ -595,6 +625,8 @@ int main(int argc, char* argv[]) {
 					else {
 						done = true;
 						window.draw(m3Text);
+						window.draw(exText);
+						
 					}
 
 				}
@@ -609,6 +641,7 @@ int main(int argc, char* argv[]) {
 				window.draw(backgroundImage);
 				window.draw(backButtonImage);
 				window.draw(infotext);
+				window.draw(exaddButtonImage);
 				window.display();
 
 			}
