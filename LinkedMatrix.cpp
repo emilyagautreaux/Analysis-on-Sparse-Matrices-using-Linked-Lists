@@ -6,7 +6,7 @@ LinkedMatrix::LinkedMatrix() { //constructor
 	head = NULL;
 }
 
-LinkedMatrix::~LinkedMatrix() { //deconstrucotr (idk if this will work, it needs testing) 
+LinkedMatrix::~LinkedMatrix() { //deconstructor
 
 	Node* current = head;
 	while (current != NULL) {
@@ -20,7 +20,7 @@ LinkedMatrix::~LinkedMatrix() { //deconstrucotr (idk if this will work, it needs
 
 void LinkedMatrix::addMatrix(Node* m1,Node* m2) {
 
-	while (m1 != NULL && m2 != NULL) { //while m1 and m2 matrices are not empty 
+	while (m1 != NULL && m2 != NULL) { //while m1 and m2 linked lists are not empty 
 		
 		if (m1->row == m2->row) { // if both rows are equal 			
 			if (m1->col == m2->col) { // ifcolumns are equal 
@@ -61,34 +61,35 @@ void LinkedMatrix::addMatrix(Node* m1,Node* m2) {
 }
 
 void LinkedMatrix::subtractMatrix(Node* m1, Node* m2){
-	while (m1 != NULL && m2 != NULL) {
+	
+	while (m1 != NULL && m2 != NULL) { //while m1 and m2 linked lists are not empty
 		
 		if (m1->row == m2->row) { // if both rows are equal 
 			
 			if (m1->col == m2->col) { // if columns are equal 
-				this->append(m1->row, m1->col, m1->val - m2->val);
-				m1 = m1->next;
-				m2 = m2->next;
+				this->append(m1->row, m1->col, m1->val - m2->val); // add node to end of linked list containing the index and value after subtracting m2 from m1
+				m1 = m1->next; //traverse to next node
+				m2 = m2->next; //traverse to next node 
 			}			
-			else { // m1 column being less than m2
-				if (m1->col < m2->col) {
-					this->append(m1->row, m1->col, m1->val);
-					m1 = m1->next;
+			else {  //columns are not equal 
+				if (m1->col < m2->col) { // if m1 column is less than m2
+					this->append(m1->row, m1->col, m1->val); //add values to linked list 
+					m1 = m1->next; //move to next node 
 				}
-				else { // m2 column less than m1 
-					this->append(m2->row, m2->col, m2->val);
-					m2 = m2->next;
+				else { // m2 column is less than m1 
+					this->append(m2->row, m2->col, m2->val); //add values to end of linked list 
+					m2 = m2->next; //traverse to next node 
 				}
 			}
 		}		
 		else { // rows are not equal 			
 			if (m1->row < m2->row) {// if m1 row is less than m2 
-				this->append(m1->row, m1->col, m1->val);
-				m1 = m1->next;
+				this->append(m1->row, m1->col, m1->val); //append node to linked list 
+				m1 = m1->next; //move to next node 
 			}			
 			else { // if m2 row is less than m1
-				this->append(m2->row, m2->col, m2->val);
-				m2 = m2->next;
+				this->append(m2->row, m2->col, m2->val); //append node to linked list 
+				m2 = m2->next; //go to the next node 
 			}
 		}
 	}	
@@ -104,15 +105,14 @@ void LinkedMatrix::subtractMatrix(Node* m1, Node* m2){
 	}
 }
 
+int LinkedMatrix::find(Node* m, int r, int c) { //return value of node in linked list given index   
 
-int LinkedMatrix::find(Node* m, int r, int c) {
+	while (m != NULL) { //while linked list is not empty 
 
-	while (m != NULL) {
-
-		if (m->row == r && m->col == c) {
-			return m->val;
+		if (m->row == r && m->col == c) { // traverse through linked list until node containing row and column number is found 
+			return m->val; //return value 
 		}
-		m = m->next;
+		m = m->next; //move to next node 
 	}
 
 	return 0;
@@ -124,17 +124,17 @@ bool LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int
 	int num2;
 	int sum;
 		
-	if(m1Rows == m2Cols){	
-		for (unsigned int i = 0; i < m1Rows; i++) {
+	if(m1Rows == m2Cols){	//multiplication is only possible if the number of rows in m1 is equal to number of columns in m2 
+		for (unsigned int i = 0; i < m1Rows; i++) { // //multiplication is completed across rows of m1 and columns of m2 
 			for (unsigned int j = 0; j < m2Cols; j++) {
-				sum = 0;
-				for (unsigned int k = 0; k < m1Cols; k++) {
-					num1 = find(m1, i, k);
-					num2 = find(m2, k, j);
-					sum += num1 * num2;
+				sum = 0; 
+				for (unsigned int k = 0; k < m1Cols; k++) { //iterate down the column of m2
+					num1 = find(m1, i, k); // return m1 value at index
+					num2 = find(m2, k, j); //return m2 value at index
+					sum += num1 * num2; //multiply values and add to sum 
 				}
-				if (sum != 0) {
-					this->append(i, j, sum);
+				if (sum != 0) { // once computation is completed 
+					this->append(i, j, sum); //insert new node containing the sum at specific row and column index
 				}
 			}
 		}	
@@ -147,18 +147,20 @@ bool LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int
  
 void LinkedMatrix::append(int row, int col, int val) { // inserts a node to back of linked list
 
-	Node* newNode = new Node(row, col, val);
-	Node* temp = head;
+	Node* newNode = new Node(row, col, val); //create new node 
+	Node* temp = head; //initialize temporary pointer that starts at the head of linked list 
 
-	if (head == NULL)
-		head = newNode;
+	if (head == NULL) //if head is pointing to NULL - at the end of the list 
+		head = newNode; //have head point to new node 
 	
-	else {
-		Node* temp = head;
-		while (temp->next != NULL) {
-			temp = temp->next;
+	else { //linked list contains nodes 
+		Node* temp = head; //initialize temporary pointer that starts at the head of linked list 
+		//traverse through linked list until last node is found  
+		while (temp->next != NULL) { // while temp pointing to node whose next pointer is not NULL 
+			temp = temp->next; //temp point to next node 
 		}
-		temp->next = newNode;
+		//last node is found - create new node 
+		temp->next = newNode; //move next pointer of the previous last node to newly created node 
 	}	
 }
 bool LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){	
