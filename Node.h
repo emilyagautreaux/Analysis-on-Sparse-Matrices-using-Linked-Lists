@@ -13,6 +13,6 @@ private:
 	Node* next;
 	int row;
 	int col;
-	int val;
+	double val;
 
 };

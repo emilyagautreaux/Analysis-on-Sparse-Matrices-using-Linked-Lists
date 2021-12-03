@@ -168,6 +168,48 @@ void LinkedMatrix::append(int row, int col, int val) { // inserts a node to back
 		temp->next = newNode;
 	}	
 }
+void LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){	
+
+	if(m1->next == NULL){ //if there is one node in the linked list 
+		m1->val = static_cast<double>(1.0/m1->val); //take the inverse of that number;
+	}
+
+	if((m1rows == 2 ) && (m1cols == 2)){ //if 2x2 square matrix 
+		double invdeterminant = 1.0/(static_cast<double>((m1->val * m1->next->next->next->val)) - static_cast<double>((m1->next->val * m1->next->next->val))); // 1/(ad-bc)
+		std::cout<<invdeterminant<<std::endl;
+		
+		/*
+		[d   -b]
+		[-c   a]
+		*/
+
+		//calculating adjugate
+		this->append(0,0,invdeterminant * m1->next->next->next->val); // first node value = last node value
+		this->append(0,1,invdeterminant * -m1->next->val); //second node value = negative of second node value
+		this->append(1,0, invdeterminant * -m1->next->next->val); //third node value = negative of third node value
+		this->append(1,1,invdeterminant * m1->val); //last node value = first node value
+		
+		//other method I tried: 
+		// m1->next->next->next->val = invdeterminant * m1->val; //last node value = first node value
+		// m1->next->val = invdeterminant * -m1->next->val; //second node value = negative of second node value
+		// m1->next->next->val = invdeterminant * -m1->next->next->val; //third node value = negative of third node value
+		// m1->val = invdeterminant * m1->next->next->next->val; // first node value = last node value 	
+	}
+	if ((m1rows ==3) && (m1cols ==3)){
+		float determinant = 0;
+		for (int i =0; i<3; i++){ //calculate determinant
+			determinant = determinant + find(m1,0,i) * (find(m1,1,(i+1)%3) * find(m1,2,(i+2)%3) - find(m1,1,(i+2)%3) * find(m1,2,(i+1)%3)) ;
+		}
+		std::cout<<"determinant: "<<determinant<<std::endl;
+		
+		for(int i=0; i<3; i++){
+			for( int j =0; j<3; j++){ //calculate invserse
+				double inv = find(m1,(j+1)%3,(i+1)%3) * find(m1,(j+2)%3,(i+2)%3) - (find(m1,(j+1)%3,(i+2)%3) * find(m1,(j+2)%3,(i+1)%3)) / determinant;
+				this->append(i,j,inv);
+			}
+		}
+	}
+}
 
 // print linked list 
 void LinkedMatrix::print(Node* node, std::string type) { // the parameter is the reference of the head of the linked list 
@@ -183,120 +225,55 @@ void LinkedMatrix::print(Node* node, std::string type) { // the parameter is the
 }
 
 //Convert linked list to 2D vector 
-std::vector<std::vector<int>> LinkedMatrix::Linked2Vector(int m1rows, int m1cols, int m2rows, int m2cols, std::string type){
-	
-	std::vector<std::vector<int>> matrix;
+void LinkedMatrix::Linked2Vector(int rows1, int cols1,int rows2, int cols2, std::vector<std::vector<int>> &vector, std::string type){
 	Node* temp = this->head;
+	int rows, cols;
 	std::vector<int> row;
 
 	if (type == "Matrix 1"){
-		for(int i=0; i < m1rows; i++){		
-			for(int j=0; j < m1cols; j++){
-				if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
-					row.push_back(temp->val);
-					//std::cout << temp->val << " ";
-					//std::cout << "Lmatrix- row:" << temp->row << " col:" << temp->col << " val:" << temp->val << std::endl;
-					//move temp ptr to the next node
-					if(temp->next != nullptr){
-						temp= temp->next;
-					}
-				}
-				else{ //push a zero into that spot 
-					row.push_back(0);
-				}
-			}
-			matrix.push_back(row);
-			row.clear();
-		}	
-		return matrix;
+		rows = rows1;
+		cols = cols1;
 	}
+
+	if (type == "Matrix 2"){
+		rows = rows2;
+		cols = cols2;
+	}	
 	
-	if(type == "Matrix 2"){
-		for(int i=0; i < m2rows; i++){		
-			for(int j=0; j < m2cols; j++){
-				if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
-					row.push_back(temp->val);
-					//std::cout << temp->val << " ";
-					//std::cout << "Lmatrix- row:" << temp->row << " col:" << temp->col << " val:" << temp->val << std::endl;
-					//move temp ptr to the next node
-					if(temp->next != nullptr){
-						temp= temp->next;
-					}
-				}
-				else{ //push a zero into that spot 
-					row.push_back(0);
-				}
-			}
-			matrix.push_back(row);
-			row.clear();
-		}	
-		return matrix;	
-	}
-	
-	if(type == "Multiplication" && m1rows == m2cols && this->head != NULL){ //dimensions would be m1rows x m2cols
-		for(int i=0; i < m1rows; i++){		
-			for(int j=0; j < m2cols; j++){
-				if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
-					row.push_back(temp->val);
-					//std::cout << temp->val << " ";
-					//std::cout << "Lmatrix- row:" << temp->row << " col:" << temp->col << " val:" << temp->val << std::endl;
-					//move temp ptr to the next node
-					if(temp->next != nullptr){
-						temp= temp->next;
-					}
-				}
-				else{ //push a zero into that spot 
-					row.push_back(0);
-				}
-			}
-			matrix.push_back(row);
-			row.clear();
-		}	
-		return matrix;	
-	}
-	
-	if((type == "Addition") || (type == "Subtraction") ){ //want dimensions of largest matrix being added
-		if((m1rows * m1cols) >= (m2rows * m2cols) ){ //if matrix 1 is the same size or larger that matrix 2 
-			for(int i=0; i < m1rows; i++){		
-				for(int j=0; j < m1cols; j++){
-					if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
-						row.push_back(temp->val);
-						//std::cout << temp->val << " ";
-						//std::cout << "Lmatrix- row:" << temp->row << " col:" << temp->col << " val:" << temp->val << std::endl;
-						//move temp ptr to the next node
-						if(temp->next != nullptr){
-							temp= temp->next;
-						}
-					}
-					else{ //push a zero into that spot 
-						row.push_back(0);
-					}
-				}
-				matrix.push_back(row);
-				row.clear();
-			}	
-			return matrix;	
+	if( type == "Addition" || type == "Subtraction"){
+		if((rows1 * cols1) >= (rows2 * cols2) ){ //if matrix 1 is the same size or larger that matrix 2 
+			rows = rows1;
+			cols = cols1;
 		}
-		else if ((m1rows * m1cols) < (m2rows * m2cols)){ //if matrix 2 is larger 
-			for(int i=0; i < m2rows; i++){		
-				for(int j=0; j < m2cols; j++){
-					if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
-						row.push_back(temp->val);
-						//std::cout << temp->val << " ";
-						//std::cout << "Lmatrix- row:" << temp->row << " col:" << temp->col << " val:" << temp->val << std::endl;
-						//move temp ptr to the next node
-						if(temp->next != nullptr){
-							temp= temp->next;
-						}
-					}
-					else{ //push a zero into that spot 
-						row.push_back(0);
-					}
-				}
-				matrix.push_back(row);
-				row.clear();
-			}	
-			return matrix;
+		else if((rows1 * cols1) < (rows2 * cols2)) { //if matrix 2 is larger 
+			rows = rows2;
+			cols = cols2;
 		}
+	}
+
+	if(type == "Multiplication" && rows1 == cols2 && this->head != NULL){ //dimensions would be m1rows x m2cols
+		rows = rows1;
+		cols = cols2;
+	}
+
+	if (type == "Inverse"){
+		rows = rows1;
+		cols = cols1;
+	}	
+		
+	for(int i=0; i < rows; i++){		
+		for(int j=0; j < cols; j++){
+			if(temp->row == i && temp->col == j){ //if a nonzero element exists push that value into row
+				row.push_back(temp->val);
+				if(temp->next != nullptr){
+					temp= temp->next;
+				}
+			}
+			else{ //push a zero into that spot 
+				row.push_back(0);
+			}
+		}
+		vector.push_back(row);
+		row.clear();
 	}
 }
