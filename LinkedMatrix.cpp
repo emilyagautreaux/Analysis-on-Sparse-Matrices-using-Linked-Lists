@@ -105,7 +105,7 @@ void LinkedMatrix::subtractMatrix(Node* m1, Node* m2){
 	}
 }
 
-int LinkedMatrix::find(Node* m, int r, int c) { //return value of node in linked list given index   
+double LinkedMatrix::find(Node* m, int r, int c) { //return value of node in linked list given index   
 
 	while (m != NULL) { //while linked list is not empty 
 
@@ -120,9 +120,9 @@ int LinkedMatrix::find(Node* m, int r, int c) { //return value of node in linked
 
 bool LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int m1Cols){
 
-	int num1;
-	int num2;
-	int sum;
+	double num1;
+	double num2;
+	double sum;
 		
 	if(m1Rows == m2Cols){	//multiplication is only possible if the number of rows in m1 is equal to number of columns in m2 
 		for (unsigned int i = 0; i < m1Rows; i++) { // //multiplication is completed across rows of m1 and columns of m2 
@@ -145,7 +145,7 @@ bool LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int
 	}
 }
  
-void LinkedMatrix::append(int row, int col, int val) { // inserts a node to back of linked list
+void LinkedMatrix::append(int row, int col, double val) { // inserts a node to back of linked list
 
 	Node* newNode = new Node(row, col, val); //create new node 
 	Node* temp = head; //initialize temporary pointer that starts at the head of linked list 
@@ -226,10 +226,10 @@ void LinkedMatrix::print(Node* node, std::string type) { // the parameter is the
 }
 
 //Convert Matrixlinked list to 2D vector 
-void LinkedMatrix::Linked2Vector(int rows1, int cols1,int rows2, int cols2, std::vector<std::vector<int>> &vector, std::string type){
+void LinkedMatrix::Linked2Vector(int rows1, int cols1,int rows2, int cols2, std::vector<std::vector<double>> &vector, std::string type){
 	Node* temp = this->head;
 	int rows = 0, cols = 0;
-	std::vector<int> row;
+	std::vector<double> row;
 	//The parameters of matrices needed to print vary depending on which operation (if any) have been preformed
 	if (type == "Matrix 1"){
 		rows = rows1;

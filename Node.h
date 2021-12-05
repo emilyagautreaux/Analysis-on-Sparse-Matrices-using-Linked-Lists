@@ -6,7 +6,7 @@ class Node {
 public:
 	Node* next;
 	~Node();
-	Node(int row, int col, int val);
+	Node(int row, int col, double val);
 	void deleteList(Node** head);
 	friend class LinkedMatrix;
 
