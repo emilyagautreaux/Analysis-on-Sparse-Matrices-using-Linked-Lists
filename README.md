@@ -6,7 +6,7 @@ Operations on Sparse Matrices Using Linked Lists application reads in 2 sparse m
 
 It is recommended that the user should use Microsoft Visual Studio 2019 to open and run this program as the project was configured to run in this IDE. In order to gain access to the SFML libraries please follow the following instructions:
 
-1.) Clone repository and ensure that all .dll , matrix and buttonare located in the project directory.
+1.) Clone repository and ensure that all .dll , matrix and button folders are located in the project directory.
 
 2.) Download the SFML file. LINK: https://www.sfml-dev.org/download.php
 
