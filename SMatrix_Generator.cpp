@@ -25,10 +25,14 @@ int main(int argc, char *argv[]){
         
         for(int j=0; j<cols; j++){
         //create random number from 1-100
+        //if the generated number is <= 70 a zero value is placed in the element
         random = rand() % 100 + 1;
             if(random <= 70){
                 outFile << "0 ";
             }
+            //if the random number happens to be greater than 70
+            //another random number between 1 and 100 is generated to be placed
+            // in that element of the vector
             else{
                 randVal = rand() % 100 + 1;
                 outFile << randVal << " ";
