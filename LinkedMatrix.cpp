@@ -138,7 +138,7 @@ bool LinkedMatrix::multiplyMatrix(Node* m1, Node* m2, int m1Rows, int m2Cols,int
 				}
 			}
 		}	
-		return false;
+		return false; //for error checking 
 	}
 	else {
 		return true;
