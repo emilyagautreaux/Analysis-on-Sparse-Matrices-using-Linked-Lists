@@ -39,14 +39,14 @@ void LinkedMatrix::addMatrix(Node* m1,Node* m2) {
 				}
 			}
 		}		
-		else { // rows are not equal 			
-			if (m1->row < m2->row) { // if m1 row is less than m2 
+		else { //the rows are not equal 			
+			if (m1->row < m2->row) { //is the m1 rows are less than the m2 rows
 				this->append(m1->row, m1->col, m1->val); //append index and value to linked list 
-				m1 = m1->next; //go to the next node 
+				m1 = m1->next; //then go to the next node
 			}			
 			else { // if m2 row is less than m1
 				this->append(m2->row, m2->col, m2->val); //append index and value to linked list 
-				m2 = m2->next; //go to next node 
+				m2 = m2->next; //then go to the next node
 			}
 		}
 	}	
@@ -82,8 +82,8 @@ void LinkedMatrix::subtractMatrix(Node* m1, Node* m2){
 				}
 			}
 		}		
-		else { // rows are not equal 			
-			if (m1->row < m2->row) {// if m1 row is less than m2 
+		else { //if the rows are not eqaul			
+			if (m1->row < m2->row) {//if the m1 rows are less than m2 rows
 				this->append(m1->row, m1->col, m1->val); //append node to linked list 
 				m1 = m1->next; //move to next node 
 			}			
