@@ -8,7 +8,7 @@ LinkedMatrix::LinkedMatrix() { //constructor
 
 LinkedMatrix::~LinkedMatrix() { //deconstructor
 
-	Node* current = head;
+	Node* current = head; 
 	while (current != NULL) {
 		current = current->next;
 		delete head;
@@ -95,7 +95,7 @@ void LinkedMatrix::subtractMatrix(Node* m1, Node* m2){
 	}	
 	
 	while (m1 != NULL) { // if m1 is larger than m2 add remaining values 
-		this->append(m1->row, m1->col, m1->val);
+		this->append(m1->row, m1->col, m1->val); 
 		m1 = m1->next;
 	}	
 	
@@ -167,7 +167,7 @@ bool LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){
 
 	if(m1->next == NULL){ //if there is one node in the linked list 
 		m1->val = static_cast<double>(1.0/m1->val); //take the inverse of that number;
-		return false;
+		return false; //for error checking 
 	}
 
 	else if((m1rows == 2 ) && (m1cols == 2)){ //if 2x2 square matrix 
@@ -184,7 +184,7 @@ bool LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){
 		this->append(1,0, invdeterminant * -m1->next->next->val); //third node value = negative of third node value
 		this->append(1,1,invdeterminant * m1->val); //last node value = first node value
 
-		return false;
+		return false; //for error checking 
 	}
 	else if ((m1rows ==3) && (m1cols ==3)){
 		float determinant = 0;
@@ -197,10 +197,10 @@ bool LinkedMatrix::inverseMatrix(Node* m1, int m1rows, int m1cols){
 				this->append(i,j,inv); //append node with new value 
 			}
 		}
-		return false;
+		return false;  //for error checking 
 	}
 	else {
-		return true;
+		return true; //for error checking 
 	}
 }
 
@@ -222,7 +222,7 @@ void LinkedMatrix::Linked2Vector(int rows1, int cols1,int rows2, int cols2, std:
 	Node* temp = this->head;
 	int rows = 0, cols = 0;
 	std::vector<double> row;
-	
+
 	//The parameters of matrices needed to print vary depending on which operation (if any) have been preformed
 	if (type == "Matrix 1"){
 		rows = rows1;
