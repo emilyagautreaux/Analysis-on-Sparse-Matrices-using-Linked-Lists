@@ -1,6 +1,6 @@
 # Operations on Sparse Matrices Using Linked Lists
 
-Programmed arithmetic operations, node insertion/deletion, and calculated run-time on sparse matrices represented as linked lists in C++ to analyze how operating on this data structure is more memory efficient and makes computations less expensive in comparison to vectors and arrays. 
+Programmed addition.subtraction,multiplication, and inverse operations, node insertion/deletion, and calculated run-time on sparse matrices represented as linked lists in C++ to analyze how operating on this data structure is more memory efficient and makes computations less expensive in comparison to vectors and arrays. 
 
 Integrated SFML in C++ to provide a sleek graphical user interface with features to enhance intuitiveness and provide information about the project. 
 
