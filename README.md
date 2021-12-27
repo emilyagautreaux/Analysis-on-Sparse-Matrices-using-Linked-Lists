@@ -1,6 +1,8 @@
 # Operations on Sparse Matrices Using Linked Lists
 
-Operations on Sparse Matrices Using Linked Lists application reads in 2 sparse matrices from a file and performs operations such as, addition, subtraction, multiplication and taking an inverse. It does this in an effective manner by creating linked lists which contain only non zero values. This allows for more efficent computing time by bypassing all elements that would contain a 0 and also improves storage and memory usage. This application takes advantage of the SFML for C++ API to create a user interface that allows for seamless excutions of operations. 
+Programmed arithmetic operations, node insertion/deletion, and calculated run-time on sparse matrices represented as linked lists in C++ to analyze how operating on this data structure is more memory efficient and makes computations less expensive in comparison to vectors and arrays. 
+
+Integrated SFML in C++ to provide a sleek graphical user interface with features to enhance intuitiveness and provide information about the project. 
 
 ## Installation
 
