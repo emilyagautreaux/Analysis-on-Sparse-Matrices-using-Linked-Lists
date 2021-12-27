@@ -4,6 +4,8 @@ Programmed addition.subtraction,multiplication, and inverse operations, node ins
 
 Integrated SFML in C++ to provide a sleek graphical user interface with features to enhance intuitiveness and provide information about the project. 
 
+Project Report: https://www.pdf.investintech.com/preview-frames.php?id=WGMxUkVjRVMxVTZqTTBFZ25yOFhwbEY0SWZDNmlCbERtZE1xVGRSWkdlZXgzdXh5RDVuc3BYTWRFNzhUN0VJTjVGYS8xdENka0g1dXBYMWZNZHkvQjk5em56SlpNcEs1eGM3Y2cxdjdQUjFHcWMwT1FkUlUyaHVGVEgvRTlxQys=
+
 ## Installation
 
 It is recommended that the user should use Microsoft Visual Studio 2019 to open and run this program as the project was configured to run in this IDE. In order to gain access to the SFML libraries please follow the following instructions:
